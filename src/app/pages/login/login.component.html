@@ -1,0 +1,39 @@
+<div class="bgc-container d-flex justify-content-center align-items-center vh-100">
+  <div class="login-container p-4 border rounded bg-white shadow-lg">
+    <div class="header text-center mb-4">
+      <h1 class="text-primary"><span class="fw-bold">L</span>ogin</h1>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          formControlName="email"
+          placeholder="Ingrese su correo"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          formControlName="password"
+          placeholder="Ingrese su contraseña"
+          required
+        />
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Sign-In</button>
+      </div>
+    </form>
+    <div class="alert alert-info mt-3 text-center">
+      <b>If you don't have an account, please contact your employer.</b>
+    </div>
+  </div>
+</div>
+
+

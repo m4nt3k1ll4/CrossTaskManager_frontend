@@ -1,0 +1,88 @@
+.bgc-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0; /* Fondo opcional para toda la página */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.login-container {
+  background-color: #fff;
+  padding: 25px;
+  width: 275px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 24px;
+  color: #000;
+}
+
+h1 > .l {
+  font-size: 30px;
+  color: #8c0000;
+}
+
+label {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.input {
+  font-weight: 500;
+  width: 100%;
+  padding: 2.5px 3.75px;
+  margin: 8px 0;
+  border: 2px solid #132;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+.input:focus {
+  outline: none;
+}
+
+button {
+  background-color: #8c0000;
+  color: white;
+  padding: 12px 20px;
+  margin: 8px 0;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0.925;
+}
+
+button:hover {
+  opacity: 1;
+}
+
+.signup {
+  width: 250px;
+  text-align: center;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.signup a {
+  font-weight: 800;
+  color: #8c0000;
+  text-decoration: none;
+}
+
+.signup a:hover {
+  text-decoration: underline;
+}

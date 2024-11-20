@@ -1,0 +1,60 @@
+<div class="tab-pane fade show active" id="projects" role="tabpanel">
+  <h2>New Task</h2>
+  <!-- first row -->
+  <form class="mb-4" >
+      <div class="row">
+          <div class="col-md-6">
+              <label for="projectName" class="form-label">Task Name</label>
+              <input type="text" class="form-control" formControlName="taskName" id="taskName" placeholder="Enter task name">
+          </div>
+          <div class="col-md-6">
+              <label for="clientName" class="form-label">Description</label>
+              <input type="text" class="form-control" formControlName="taskDescription" id="taskDescription" placeholder="Enter Task Description">
+          </div>
+      </div>
+      <!-- second row -->
+      <div class="row">
+        <div class="col-md-6">
+          <label for="clientName" class="form-label">Priority</label>
+          <select class="form-select form-select-sm" aria-label="Small select example">
+            <option selected>--Select Priority--</option>
+            <option value="1">Low</option>
+            <option value="2">Mid</option>
+            <option value="3">High</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="dueDate" class="form-label">Due Date</label>
+          <input type="date" class="form-control" formControlName="dueDate" id="dueDate">
+        </div>
+      </div>
+      <!-- third row -->
+      <div class="row">
+        <div class="col-md-6">
+          <label for="managerName" class="form-label">Headquarter</label>
+          <select class="form-select form-select-sm" aria-label="Small select example">
+            <option selected>--Select Headquarter--</option>
+            <option value="2">Piedecuesta</option>
+            <option value="3">Floridablanca</option>
+            <option value="4">Ciudadela</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="adviserName" class="form-label">Adviser Assigned</label>
+          <select class="form-select form-select-sm" aria-label="Small select example">
+            <option selected>--Select Adviser--</option>
+            <option value="5">Asesor Piedecuesta Mañana</option>
+            <option value="6">Asesor Piedecuesta Tarde</option>
+            <option value="7">Asesor Floridablanca Mañana</option>
+            <option value="8">Asesor Floridablanca Tarde</option>
+            <option value="9">Asesor Ciudadela Mañana</option>
+            <option value="10">Asesor Ciudadela Tarde</option>
+          </select>
+        </div>
+      </div>
+
+          <button type="button"  class="btn btn-primary mt-3">Save Task</button>
+          <button type="button"  class="btn btn-warning mt-3">Update Task</button>
+          <button type="button" routerLink="/task" class="btn btn-danger mt-3">Cancel</button>
+  </form>
+</div>

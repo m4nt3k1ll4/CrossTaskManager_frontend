@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-8">
+      <div class="card">
+          <div class="card-header bg-warning">
+              <h5>Task Assignation</h5>
+          </div>
+          <div class="card-body">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th>Task ID</th>
+                          <th>Task Name</th>
+                          <th>Employee Assigned</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+
+                          <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td>
+                                  <button type="button" class="btn btn-primary mt-3"  >Edit</button>
+                                  <button type="button" class="btn btn-danger mt-3"  >Delete</button>
+                              </td>
+                          </tr>
+
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+  </div>
+  <div class="col-4">
+       <div class="card">
+          <div class="card-header bg-warning">
+              <h5>Assign a Task</h5>
+          </div>
+          <div class="card-body">
+              <form class="mb-4">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <label for="projectId" class="form-label">Task ID</label>
+                          <select class="form-select" formControlName="projectId" >
+                              <option value="">--Select Task--</option>
+                                  <option>task place</option>
+                          </select>
+
+                      </div>
+                      <div class="col-md-6">
+                          <label for="empId" class="form-label">Employee ID</label>
+                          <select class="form-select" formControlName="empId" >
+                              <option value="">--Select Employee--</option>
+                                  <option >advisers place</option>
+                          </select>
+
+                      </div>
+                  </div>
+                  <button type="button" class="btn btn-primary mt-3 mx-2">Assign</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
