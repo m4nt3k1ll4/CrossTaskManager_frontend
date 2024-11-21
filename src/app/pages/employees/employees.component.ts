@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { FormBuilder } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 
 
@@ -33,9 +34,9 @@ export class EmployeesComponent {
     private usersService: UsersService,
     private formBuilder: FormBuilder) {
     this.initForm();
-   }
+  }
 
-   ngOnInit(): void {
+  ngOnInit(): void {
     this.getEmployees();
   }
 
@@ -49,7 +50,7 @@ export class EmployeesComponent {
     role?: Role
   ) {
     this.myForm = this.formBuilder.group({
-      id: [id ],
+      id: [id],
       name: [name],
       email: [email],
       password: [password],
@@ -64,7 +65,7 @@ export class EmployeesComponent {
     this.usersService.getEmployees().subscribe({
       next: (response) => {
         console.log(response);
-        this.employees =response;
+        this.employees = response;
         this.filterUniqueRoles();
         this.loading = false;
       },
@@ -85,46 +86,83 @@ export class EmployeesComponent {
     });
   }
 
-  initEmployees(){
+  initEmployees() {
     this.showForm = true;
     this.initForm();
   }
-  close(){
+  close() {
     this.showForm = false;
   }
 
-  formSubmitEmployee(form:FormGroup): void{
+  formSubmitEmployee(form: FormGroup): void {
     console.log(form);
     const employee: User = {
-      'name':form.value.name,
-      'email':form.value.email,
-      'password':form.value.password,
-      'role_id':form.value.role_id,
+      'name': form.value.name,
+      'email': form.value.email,
+      'password': form.value.password,
+      'role_id': form.value.role_id,
     };
 
-    if(form.value.id) {
-      this.usersService.updateEmployees( employee ,form.value.id ).subscribe(data => {
-        this.getEmployees();
-        console.log(data);
-        this.close();
+    if (form.value.id) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to update this employee?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, update it!',
+        cancelButtonText: 'No, cancel!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.usersService.updateEmployees(employee, form.value.id).subscribe(
+            (data) => {
+              this.getEmployees();
+              console.log(data);
+              this.close();
+            },
+            (error) => {
+              console.error('Error updating employee:', error);
+            }
+          );
+        }
       });
-    } else{
-      this.usersService.addEmployees(employee).subscribe(data => {
-        this.getEmployees()
-        console.log(data)
-        this.close();
-      });
+    } else {
+      this.usersService.addEmployees(employee).subscribe(
+        (data) => {
+          this.getEmployees();
+          console.log(data);
+          this.close();
+        },
+        (error) => {
+          console.error('Error adding employee:', error);
+        }
+      );
     }
   }
 
-  updateEmployees(user : User){
-    this.initForm(user.id,user.name,user.email,user.password,user.role_id);
+  updateEmployees(user: User) {
+    this.initForm(user.id, user.name, user.email, user.password, user.role_id);
     this.showForm = true;
   }
-  deleteEmployees(id: number = 0):void{
-    this.usersService.deleteEmployees(id).subscribe(data => {
-      this.getEmployees()
-      console.log(data)
+  deleteEmployees(id: number = 0): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you want to delete this employee?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usersService.deleteEmployees(id).subscribe(
+          (data) => {
+            this.getEmployees();
+            console.log(data);
+          },
+          (error) => {
+            console.error('Error deleting employee:', error);
+          }
+        );
+      }
     });
   }
 

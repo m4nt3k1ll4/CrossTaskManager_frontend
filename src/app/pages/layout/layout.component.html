@@ -1,35 +1,30 @@
 <div class="">
-  <header class="navbar navbar-expand-lg navbar-light bg-light py-3 mb-4 border-bottom">
-    <div class="container-fluid">
+  <header class="navbar navbar-expand-lg navbar-light bg-dark py-2 mb-4 border-bottom">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
 
       <a href="/" class="navbar-brand d-flex align-items-center">
-        <svg class="bi" width="40" height="32" role="img" aria-label="Logo"><use xlink:href="#bootstrap"></use></svg>
-        <span class="ms-2">Cross Task Manager</span>
+        <img src="logoBanner.png" alt="Cross Task Manager Logo" width="140" height="50" class="me-2" />
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <nav class="d-flex flex-wrap align-items-center">
+        <ul class="navbar-nav d-flex flex-row">
           <li class="nav-item">
-            <a routerLink="/dashboard" class="nav-link active px-3">Dashboard</a>
+            <a routerLink="/dashboard" class="nav-link text-white px-2">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/employees" class="nav-link px-3">Empleados</a>
+            <a routerLink="/employees" class="nav-link text-white px-2">Empleados</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/task" class="nav-link px-3">Tareas</a>
+            <a routerLink="/task" class="nav-link text-white px-2">Tareas</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/task-assign" class="nav-link px-3">Asignación</a>
+            <a routerLink="/task-assign" class="nav-link text-white px-2">Asignación</a>
           </li>
         </ul>
-      </div>
+      </nav>
 
-      <div class="d-flex">
-        <button type="button" class="btn btn-outline-primary" (click)="authService.logout()">LogOut</button>
+      <div class="ms-2">
+        <button type="button" class="btn btn-outline-light" (click)="authService.logout()">LogOut</button>
       </div>
     </div>
   </header>

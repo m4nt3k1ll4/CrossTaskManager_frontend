@@ -1,41 +1,41 @@
 <div class="tab-pane fade show active" id="projects" role="tabpanel">
-
-
-  <div class="row">
-      <div class="col-6">
-          <h2>Tasks</h2>
-      </div>
-      <div class="col-6 text-end">
-          <button routerLink="/task-assign/0" class="btn btn-success">New Task</button>
-      </div>
+  <div class="row mb-3">
+    <div class="col-6">
+      <h2>Tasks</h2>
+    </div>
+    <div class="col-6 text-end">
+      <button routerLink="/task-assign/0" class="btn btn-success rounded-pill">New Task</button>
+    </div>
   </div>
-  <table class="table table-bordered">
-      <thead>
-          <tr>
-              <th>ID</th>
-              <th>Task Name</th>
-              <th>Description</th>
-              <th>Priority</th>
-              <th>Due Date</th>
-              <th>Comment</th>
-              <th>Image URL</th>
-              <th>Actions</th>
-          </tr>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover rounded-3 overflow-hidden">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Task Name</th>
+          <th>Description</th>
+          <th>Priority</th>
+          <th>Due Date</th>
+          <th>Comment</th>
+          <th>Image URL</th>
+          <th>Actions</th>
+        </tr>
       </thead>
       <tbody>
-              <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                      <button type="button" class="btn btn-primary mt-3" >Edit</button>
-                      <button type="button" class="btn btn-danger mt-3 mx-2" >Delete</button>
-                  </td>
-              </tr>
+        <tr>
+          <td>1</td>
+          <td>Task Example</td>
+          <td>Lorem ipsum dolor sit amet.</td>
+          <td>High</td>
+          <td>2024-11-30</td>
+          <td>No comments</td>
+          <td>http://example.com/image.png</td>
+          <td>
+            <button type="button" class="btn btn-primary btn-sm rounded-pill">Edit</button>
+            <button type="button" class="btn btn-danger btn-sm rounded-pill mx-2">Delete</button>
+          </td>
+        </tr>
       </tbody>
-  </table>
+    </table>
+  </div>
 </div>
