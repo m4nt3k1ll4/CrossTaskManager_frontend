@@ -26,13 +26,12 @@ export class EmployeesComponent {
   showForm: boolean = false;
   employees: User[] = [];
   uniqueRoles: any[] = [];
-
   myForm!: FormGroup;
   loading: boolean = false;
+
   constructor(
     private usersService: UsersService,
-    private formBuilder: FormBuilder
-  ) {
+    private formBuilder: FormBuilder) {
     this.initForm();
    }
 
@@ -105,13 +104,15 @@ export class EmployeesComponent {
 
     if(form.value.id) {
       this.usersService.updateEmployees( employee ,form.value.id ).subscribe(data => {
-        this.getEmployees()
-        console.log(data)
+        this.getEmployees();
+        console.log(data);
+        this.close();
       });
     } else{
       this.usersService.addEmployees(employee).subscribe(data => {
         this.getEmployees()
         console.log(data)
+        this.close();
       });
     }
   }
