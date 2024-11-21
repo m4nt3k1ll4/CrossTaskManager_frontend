@@ -3,8 +3,6 @@ export class Headquarter {
   name: string;
   email: string;
   role_id: number;
-  created_at: Date | null;
-  updated_at: Date | null;
   role: Role;
 
   constructor(json: any = {}) {
@@ -12,8 +10,6 @@ export class Headquarter {
       this.name = json.name || '';
       this.email = json.email || '';
       this.role_id = json.role_id || 0;
-      this.created_at = json.created_at ? new Date(json.created_at) : null;
-      this.updated_at = json.updated_at ? new Date(json.updated_at) : null;
       this.role = new Role(json.role || {});
   }
 }
