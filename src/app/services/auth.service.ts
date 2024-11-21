@@ -18,7 +18,6 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     console.log(email,password)
     return this.httpClient.post(`${this.apiUrl}/login`, { email, password });
-
   }
 
   setToken(token: string): void {

@@ -1,20 +1,36 @@
-<div class="container">
-  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom ">
-    <div class="col-md-3 mb-2 mb-md-0">
-      <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-        <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+<div class="">
+  <header class="navbar navbar-expand-lg navbar-light bg-light py-3 mb-4 border-bottom">
+    <div class="container-fluid">
+
+      <a href="/" class="navbar-brand d-flex align-items-center">
+        <svg class="bi" width="40" height="32" role="img" aria-label="Logo"><use xlink:href="#bootstrap"></use></svg>
+        <span class="ms-2">Cross Task Manager</span>
       </a>
-    </div>
 
-    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-      <li><a routerLink="/dashboard" class="nav-link px-2">Dashboard</a></li>
-      <li><a routerLink="/employees" class="nav-link px-2">Employees</a></li>
-      <li><a routerLink="/task" class="nav-link px-2">Task</a></li>
-      <li> <a routerLink="/task-assign" class="nav-link px-2">TaskAssign</a></li>
-    </ul>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="col-md-3 text-end">
-      <button type="button" class="btn btn-primary" (click)="authService.logout()">LogOut</button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a routerLink="/dashboard" class="nav-link active px-3">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/employees" class="nav-link px-3">Employees</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/task" class="nav-link px-3">Task</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/task-assign" class="nav-link px-3">Task Assign</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="d-flex">
+        <button type="button" class="btn btn-outline-primary" (click)="authService.logout()">LogOut</button>
+      </div>
     </div>
   </header>
 </div>

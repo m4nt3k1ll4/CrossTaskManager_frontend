@@ -1,39 +1,56 @@
-<div class="bgc-container d-flex justify-content-center align-items-center vh-100">
-  <div class="login-container p-4 border rounded bg-white shadow-lg">
-    <div class="header text-center mb-4">
-      <h1 class="text-primary"><span class="fw-bold">L</span>ogin</h1>
-    </div>
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-      <div class="mb-3">
-        <label for="email" class="form-label">E-mail</label>
-        <input
-          type="email"
-          id="email"
-          class="form-control"
-          formControlName="email"
-          placeholder="Ingrese su correo"
-          required
-        />
+<body class="bg-dark">
+  <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+    <div class="row w-100 h-100">
+      <!-- Left section: image -->
+      <div class="col-md-6 d-flex justify-content-center align-items-center bg-dark rounded-start shadow-lg">
+        <img src="logoCross.jpeg" alt="Login Image" class="img-fluid rounded-3" />
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input
-          type="password"
-          id="password"
-          class="form-control"
-          formControlName="password"
-          placeholder="Ingrese su contraseña"
-          required
-        />
+
+      <!-- Right section: form -->
+      <div class="col-md-6 d-flex justify-content-center align-items-center bg-dark rounded-end shadow-lg">
+        <div class="login-container p-5 w-75 bg-secondary text-white rounded-3">
+          <div class="header text-center mb-4">
+            <h1 class="text-light"><span class="fw-bold">L</span>ogin</h1>
+          </div>
+          <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+            <!-- E-mail input field -->
+            <div class="mb-3">
+              <label for="email" class="form-label">E-mail</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control bg-dark text-white border-0 rounded-3"
+                formControlName="email"
+                placeholder="Ingrese su correo"
+                required
+              />
+            </div>
+
+            <!-- Password input field -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control bg-dark text-white border-0 rounded-3"
+                formControlName="password"
+                placeholder="Ingrese su contraseña"
+                required
+              />
+            </div>
+
+            <!-- Submit button -->
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary btn-lg rounded-3">Sign In</button>
+            </div>
+          </form>
+
+          <!-- Info message -->
+          <div class="alert alert-info mt-4 text-center">
+            <b>If you don't have an account, please contact your employer.</b>
+          </div>
+        </div>
       </div>
-      <div class="d-grid">
-        <button type="submit" class="btn btn-primary">Sign-In</button>
-      </div>
-    </form>
-    <div class="alert alert-info mt-3 text-center">
-      <b>If you don't have an account, please contact your employer.</b>
     </div>
   </div>
-</div>
-
-
+</body>

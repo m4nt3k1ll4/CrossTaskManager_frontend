@@ -1,7 +1,8 @@
-export class Headquarter {
+export class User {
   id: number;
   name: string;
   email: string;
+  password: string;
   role_id: number;
   role: Role;
 
@@ -9,6 +10,7 @@ export class Headquarter {
       this.id = json.id || 0;
       this.name = json.name || '';
       this.email = json.email || '';
+      this.password = json.password || '';
       this.role_id = json.role_id || 0;
       this.role = new Role(json.role || {});
   }
@@ -17,22 +19,10 @@ export class Headquarter {
 export class Role {
   id: number;
   name: string;
-  scopes: string;
+
 
   constructor(json: any = {}) {
       this.id = json.id || 0;
       this.name = json.name || '';
-      this.scopes = json.scopes || '';
   }
 }
-
-export class Convert {
-  public static toHeadquarter(json: string): Headquarter {
-      return new Headquarter(JSON.parse(json));
-  }
-
-  public static headquarterToJson(value: Headquarter): string {
-      return JSON.stringify(value);
-  }
-}
-
