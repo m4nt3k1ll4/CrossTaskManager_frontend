@@ -1,47 +1,72 @@
 <div class="tab-pane fade show active" id="adviser" role="tabpanel">
   <div class="row">
     <div class="col-6">
-      <h2>Employees</h2>
+      <h2>Empleados</h2>
     </div>
     <div class="col-6 text-end">
-      <button class="btn btn-success">Add New</button>
+      <button class="btn btn-success" (click)="initEmployees()">Add New</button>
     </div>
   </div>
 
   <!-- Employee Form -->
+  <section class="mb-4 p-4 shadow-sm rounded border bg-light" *ngIf="showForm">
+    <form [formGroup]="myForm" (ngSubmit)="formSubmitEmployee(myForm)">
+      <h4 class="text-center mb-4">Employee Details</h4>
 
-  <form class="mb-4">
-    <div class="row">
-      <div class="col-md-6">
-        <label for="employeeName" class="form-label">Employee Name</label>
-        <input type="text" class="form-control" name="employeeName" />
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="employeeName" class="form-label">Employee Name</label>
+          <input
+            formControlName="name"
+            type="text"
+            class="form-control"
+            name="employeeName"
+            placeholder="Enter employee's name"
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email</label>
+          <input
+            formControlName="email"
+            type="email"
+            class="form-control"
+            name="emailId"
+            placeholder="Enter employee's email"
+          />
+        </div>
       </div>
-      <div class="col-md-4">
-        <label for="emailId" class="form-label">Email</label>
-        <input type="email" class="form-control" name="emailId" />
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="Password" class="form-label">Password</label>
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            name="password"
+            placeholder="Enter a secure password"
+          />
+        </div>
+        <div class="col-md-4">
+          <label for="role" class="form-label">Role</label>
+          <select formControlName="role_id" class="form-select" aria-label="Select Role" name="role">
+            <option selected>--Select Role of the Employee--</option>
+            <option *ngFor="let role of uniqueRoles" [value]="role.role.id">{{ role.role.name }}</option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <label for="Password" class="form-label">Password</label>
-        <input type="password" class="form-control" name="password" />
+
+      <div class="d-flex justify-content-between mt-3">
+        <button type="submit" class="btn btn-primary">{{ myForm.value.id ? "Update Employee" : "Add employee" }}
+          <span class="spinner-grow spinner-grow-sm me-2"></span>
+        </button>
+
+        <button type="button" class="btn btn-success" (click)="close()">
+          <i class="bi bi-x-circle me-2"></i> Close
+        </button>
       </div>
-      <div class="col-md-4">
-        <label for="role" class="form-label">Role</label>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>--Select Role Of the Employee</option>
-          <option value="1">ceo</option>
-          <option value="2">admin</option>
-          <option value="3">adviser</option>
-        </select>
-      </div>
-    </div>
-    <button type="button" class="btn btn-primary mt-3">
-      <span class="spinner-grow spinner-grow-sm"></span>Save Adviser
-    </button>
-    <button type="button" class="btn btn-warning mt-3">Update Adviser</button>
-    <button class="btn btn-success mt-3 mx-2">Close</button>
-  </form>
+    </form>
+  </section>
 
   <!-- Employee Table -->
   <section *ngIf="!showForm">
@@ -51,7 +76,6 @@
           <th>ID</th>
           <th>Employee Name</th>
           <th>Email</th>
-          <th>Password</th>
           <th>Role</th>
           <th>Actions</th>
         </tr>
@@ -72,21 +96,31 @@
           </td>
         </tr>
 
-        <!-- Los datos de los usuarios -->
         <tr *ngFor="let user of employees">
           <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
-          <td>{{ user.password }}</td>
-          <td>{{ user.role.name }}</td>
+          <td>{{ user.role?.name }}</td>
           <td class="text-center">
             <div class="btn-group" role="group" aria-label="User actions">
-              <button type="button" class="btn btn-primary">Edit</button>
-              <button type="button" class="btn btn-danger mx-2">Delete</button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="updateEmployees(user)"
+              >
+                Edit
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger mx-2"
+                (click)="deleteEmployees(user.id)"
+              >
+                Delete
+              </button>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
   </section>
-
+</div>

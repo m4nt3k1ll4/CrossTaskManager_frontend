@@ -25,6 +25,8 @@ import { FormBuilder } from '@angular/forms';
 export class EmployeesComponent {
   showForm: boolean = false;
   employees: User[] = [];
+  uniqueRoles: any[] = [];
+
   myForm!: FormGroup;
   loading: boolean = false;
   constructor(
@@ -64,6 +66,7 @@ export class EmployeesComponent {
       next: (response) => {
         console.log(response);
         this.employees =response;
+        this.filterUniqueRoles();
         this.loading = false;
       },
       error: (err) => {
@@ -72,9 +75,57 @@ export class EmployeesComponent {
     });
   }
 
+  filterUniqueRoles(): void {
+    const uniqueRolesSet = new Set();
+    this.uniqueRoles = this.employees.filter((employee) => {
+      if (!uniqueRolesSet.has(employee.role!.name)) {
+        uniqueRolesSet.add(employee.role!.name);
+        return true;
+      }
+      return false;
+    });
+  }
+
   initEmployees(){
     this.showForm = true;
     this.initForm();
   }
+  close(){
+    this.showForm = false;
+  }
+
+  formSubmitEmployee(form:FormGroup): void{
+    console.log(form);
+    const employee: User = {
+      'name':form.value.name,
+      'email':form.value.email,
+      'password':form.value.password,
+      'role_id':form.value.role_id,
+    };
+
+    if(form.value.id) {
+      this.usersService.updateEmployees( employee ,form.value.id ).subscribe(data => {
+        this.getEmployees()
+        console.log(data)
+      });
+    } else{
+      this.usersService.addEmployees(employee).subscribe(data => {
+        this.getEmployees()
+        console.log(data)
+      });
+    }
+  }
+
+  updateEmployees(user : User){
+    this.initForm(user.id,user.name,user.email,user.password,user.role_id);
+    this.showForm = true;
+  }
+  deleteEmployees(id: number = 0):void{
+    this.usersService.deleteEmployees(id).subscribe(data => {
+      this.getEmployees()
+      console.log(data)
+    });
+  }
+
 
 }

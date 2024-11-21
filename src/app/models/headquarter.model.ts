@@ -1,18 +1,3 @@
-export interface Headquarter {
-  id: number;
-  name: string;
-  ceo_id: number;
-  manager_id: number;
-  manager: Manager;
-}
-
-export interface Manager {
-  id: number;
-  name: string;
-  email: string;
-  role_id: number;
-}
-
 export class Headquarter {
   id: number;
   name: string;
@@ -43,13 +28,4 @@ export class Manager {
   }
 }
 
-// Converts JSON strings to/from your types
-export class Convert {
-  public static toHeadquarter(json: string): Headquarter {
-    return new Headquarter(JSON.parse(json));
-  }
 
-  public static headquarterToJson(value: Headquarter): string {
-    return JSON.stringify(value);
-  }
-}
