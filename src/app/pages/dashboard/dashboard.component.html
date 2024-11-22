@@ -1,65 +1,115 @@
 <div class="container my-4">
   <div class="row">
-    <!-- Total Employees Widget -->
+    <!-- Widget: Tareas Ciudadela -->
     <div class="col-md-4">
-      <div class="card text-white bg-primary mb-3">
-        <div class="card-header">Tareas Ciudadela</div>
+      <div class="card text-white bg-primary shadow rounded-3">
+        <div class="card-header fw-bold">Tareas Ciudadela</div>
         <div class="card-body">
           <h5 class="card-title">Tareas</h5>
-          <p class="card-text" id="totalEmployees">Total Tareas asignadas:
-                                                   Total Tareas Completadas:
+          <p class="card-text">
+            <span>Total Tareas asignadas:</span> <strong id="totalAssignedCiudadela">0</strong><br>
+            <span>Total Tareas Completadas:</span> <strong id="totalCompletedCiudadela">0</strong>
           </p>
         </div>
       </div>
     </div>
 
-    <!-- Total Projects Widget -->
+    <!-- Widget: Tareas Floridablanca -->
     <div class="col-md-4">
-      <div class="card text-white bg-success mb-3">
-        <div class="card-header">Tareas Floridablanca</div>
+      <div class="card text-white bg-success shadow rounded-3">
+        <div class="card-header fw-bold">Tareas Floridablanca</div>
         <div class="card-body">
           <h5 class="card-title">Tareas</h5>
-          <p class="card-text" id="totalProjects">Total Tareas asignadas:
-                                                  Total Tareas Completadas:</p>
+          <p class="card-text">
+            <span>Total Tareas asignadas:</span> <strong id="totalAssignedFloridablanca">0</strong><br>
+            <span>Total Tareas Completadas:</span> <strong id="totalCompletedFloridablanca">0</strong>
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- Active Employees in Projects -->
+    <!-- Widget: Tareas Piedecuesta -->
     <div class="col-md-4">
-      <div class="card text-white bg-warning mb-3">
-        <div class="card-header">Tareas Piedecuesta</div>
+      <div class="card text-white bg-warning shadow rounded-3">
+        <div class="card-header fw-bold">Tareas Piedecuesta</div>
         <div class="card-body">
           <h5 class="card-title">Tareas</h5>
-          <p class="card-text" id="totalProjects">Total Tareas asignadas:
-            Total Tareas Completadas:</p>
+          <p class="card-text">
+            <span>Total Tareas asignadas:</span> <strong id="totalAssignedPiedecuesta">0</strong><br>
+            <span>Total Tareas Completadas:</span> <strong id="totalCompletedPiedecuesta">0</strong>
+          </p>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row">
-    <!-- Latest tasks -->
+  <!-- Sección de Tablas -->
+  <div class="row mt-4">
     <div class="col-md-6">
-      <div class="card mb-3">
-        <div class="card-header">Latest Tasks</div>
+      <div class="card shadow-sm rounded-3">
+        <div class="card-header bg-white text-dark fw-bold">Tareas Pendientes</div>
         <div class="card-body">
-          <ul id="latestProjects" class="list-group">
-              <li class="mx-2">task</li>
-          </ul>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover rounded-3 overflow-hidden">
+              <thead class="table-dark">
+                <tr>
+                  <th>Tarea</th>
+                  <th>Empleado Asignado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Completar reporte mensual</td>
+                  <td>Juan Pérez</td>
+                </tr>
+                <tr>
+                  <td>Actualizar inventario</td>
+                  <td>María López</td>
+                </tr>
+                <tr>
+                  <td>Capacitación en seguridad</td>
+                  <td>Carlos Ruiz</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
 
+
+
     <div class="col-md-6">
-      <div class="card mb-3">
-        <div class="card-header">Recently Hired Employees</div>
+      <div class="card shadow-sm rounded-3">
+        <div class="card-header bg-white text-dark fw-bold">Porcentaje de Cumplimiento</div>
         <div class="card-body">
-          <ul id="recentEmployees" class="list-group">
-              <li class="mx-2">adviser</li>
-          </ul>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover rounded-3 overflow-hidden">
+              <thead class="table-dark">
+                <tr>
+                  <th>Sede</th>
+                  <th>Porcentaje de Cumplimiento</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Piedecuesta</td>
+                  <td>75%</td> <!-- Ejemplo, reemplazar con datos reales -->
+                </tr>
+                <tr>
+                  <td>Floridablanca</td>
+                  <td>82%</td> <!-- Ejemplo, reemplazar con datos reales -->
+                </tr>
+                <tr>
+                  <td>Ciudadela</td>
+                  <td>90%</td> <!-- Ejemplo, reemplazar con datos reales -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>
