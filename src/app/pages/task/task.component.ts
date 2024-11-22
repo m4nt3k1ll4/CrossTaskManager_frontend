@@ -1,29 +1,55 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { NgFor, CommonModule } from '@angular/common';
+import { Component, } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { TaskService } from '../../services/task.service';
+import { Task } from '../../models/task.model';
+import Swal from 'sweetalert2';
 
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [RouterLink],
+  providers: [TaskService],
+  imports: [
+    RouterLink,
+    NgFor,
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css'
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent {
+  showForm: boolean = false;
+  tasks: Task[] = [];
+  myForm!: FormGroup;
+  loading: boolean = false;
 
-  router = inject(Router)
-
-  ngOnInit() {
-
+  constructor(
+    private taskService: TaskService,
+    private formBuilder: FormBuilder,
+  ) {
+    //this.initForm();
   }
-
-  getProjects() {
- //function
-  }
-  onEdit() {
-
-  }
-  onDelete() {
-
-  }
+ngOnInit(): void {
+  this.getTask();
 }
+initForm(){}
+
+getTask(){
+  this.loading = true;
+  this.taskService.getTask().subscribe({
+    next: (response) => {
+      console.log(response);
+      this.tasks = response;
+      this.loading = false;
+    },
+    error: (err) => {
+      console.error('Error fetching tasks:', err);
+    },
+  });
+}
+}
+

@@ -7,7 +7,7 @@
       <button routerLink="/task-assign/0" class="btn btn-success rounded-pill">New Task</button>
     </div>
   </div>
-  <div class="table-responsive">
+  <div class="table-responsive" *ngIf="!showForm">
     <table class="table table-bordered table-striped table-hover rounded-3 overflow-hidden">
       <thead class="table-dark">
         <tr>
@@ -22,14 +22,24 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Task Example</td>
-          <td>Lorem ipsum dolor sit amet.</td>
-          <td>High</td>
-          <td>2024-11-30</td>
-          <td>No comments</td>
-          <td>http://example.com/image.png</td>
+        <tr *ngIf="loading">
+          <td colspan="7" class="text-center">
+            <div class="spinner-grow text-muted"></div>
+            <div class="spinner-grow text-primary"></div>
+            <div class="spinner-grow text-success"></div>
+            <div class="spinner-grow text-info"></div>
+            <div class="spinner-grow text-warning"></div>
+            <div class="spinner-grow text-danger"></div>
+          </td>
+        </tr>
+        <tr *ngFor="let task of tasks">
+          <td>{{ task.id }}</td>
+          <td>{{ task.title }}</td>
+          <td>{{ task.description }}</td>
+          <td>{{ task.priority }}</td>
+          <td>{{ task.due_date}}</td>
+          <td>{{ task.comments.length }}</td>
+          <td>{{ task.images.length }}</td>
           <td>
             <button type="button" class="btn btn-primary btn-sm rounded-pill">Edit</button>
             <button type="button" class="btn btn-danger btn-sm rounded-pill mx-2">Delete</button>

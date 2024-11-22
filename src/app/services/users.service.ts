@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class UsersService {
 
-  private httpClient = inject(HttpClient)
+  private httpClient = inject(HttpClient);
   private apiUrl = 'http://127.0.0.1:8000/api';
 
   constructor() { }

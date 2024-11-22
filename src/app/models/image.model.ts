@@ -1,9 +1,9 @@
-export class Comment {
+export class Image {
   id: number;
-  comment: string;
+  status: string;
 
   constructor(json: any = {}) {
     this.id = json.id || 0;
-    this.comment = json.comment || '';
+    this.status = json.status || '';
   }
 }
