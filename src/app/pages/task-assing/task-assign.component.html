@@ -1,12 +1,15 @@
 <div class="row">
-  <!-- Tabla de Asignación de Tareas -->
+  <!-- Task Assignment Table -->
   <div class="col-md-8">
     <div class="card shadow-sm rounded-3">
+      <!-- Card Header -->
       <div class="card-header bg-white text-dark fw-bold">
-        <h5 class="mb-0">Tareas Asignadas</h5>
+        <h5 class="mb-0">Assigned Tasks</h5>
       </div>
+      <!-- Card Body -->
       <div class="card-body">
         <div class="table-responsive">
+          <!-- Task Table -->
           <table class="table table-bordered table-striped table-hover rounded-3 overflow-hidden">
             <thead class="table-dark">
               <tr>
@@ -17,21 +20,27 @@
               </tr>
             </thead>
             <tbody>
+              <!-- Mock Data: Example Task -->
               <tr>
                 <td>1</td>
                 <td>Example Task</td>
                 <td>John Doe</td>
                 <td>
+                  <!-- Edit Button -->
                   <button type="button" class="btn btn-primary btn-sm rounded-pill">Edit</button>
+                  <!-- Delete Button -->
                   <button type="button" class="btn btn-danger btn-sm rounded-pill mx-2">Delete</button>
                 </td>
               </tr>
+              <!-- Mock Data: Another Task -->
               <tr>
                 <td>2</td>
                 <td>Another Task</td>
                 <td>Jane Smith</td>
                 <td>
+                  <!-- Edit Button -->
                   <button type="button" class="btn btn-primary btn-sm rounded-pill">Edit</button>
+                  <!-- Delete Button -->
                   <button type="button" class="btn btn-danger btn-sm rounded-pill mx-2">Delete</button>
                 </td>
               </tr>
@@ -42,16 +51,18 @@
     </div>
   </div>
 
-  <!-- Formulario de Asignación -->
+  <!-- Task Assignment Form -->
   <div class="col-md-4">
     <div class="card shadow-sm rounded-3">
+      <!-- Card Header -->
       <div class="card-header bg-white text-dark fw-bold">
-        <h5 class="mb-0">Asigna una Tarea</h5>
+        <h5 class="mb-0">Assign a Task</h5>
       </div>
+      <!-- Card Body -->
       <div class="card-body">
         <form>
           <div class="row">
-            <!-- Campo de ID de Tarea -->
+            <!-- Task ID Field -->
             <div class="col-md-6 mb-3">
               <label for="projectId" class="form-label fw-bold">Task ID</label>
               <select class="form-select" id="projectId" formControlName="projectId">
@@ -60,7 +71,7 @@
                 <option value="2">Task 2</option>
               </select>
             </div>
-            <!-- Campo de ID de Empleado -->
+            <!-- Employee ID Field -->
             <div class="col-md-6 mb-3">
               <label for="empId" class="form-label fw-bold">Employee ID</label>
               <select class="form-select" id="empId" formControlName="empId">
@@ -70,9 +81,9 @@
               </select>
             </div>
           </div>
-          <!-- Botón de Asignación -->
+          <!-- Assign Button -->
           <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-primary rounded-pill">Asignar</button>
+            <button type="button" class="btn btn-primary rounded-pill">Assign</button>
           </div>
         </form>
       </div>

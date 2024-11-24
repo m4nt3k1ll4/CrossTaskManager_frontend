@@ -1,19 +1,27 @@
 <body class="bg-dark">
+  <!-- Fullscreen container for the login page -->
   <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
     <div class="row w-100 h-100">
-      <!-- Left section: image -->
+      <!-- Left Section: Image -->
       <div class="col-md-6 d-flex justify-content-center align-items-center bg-dark rounded-start shadow-lg">
+        <!-- Login illustration -->
         <img src="logoCross.jpeg" alt="Login Image" class="img-fluid rounded-3" />
       </div>
 
-      <!-- Right section: form -->
+      <!-- Right Section: Login Form -->
       <div class="col-md-6 d-flex justify-content-center align-items-center bg-dark rounded-end shadow-lg">
+        <!-- Login form container -->
         <div class="login-container p-5 w-75 bg-secondary text-white rounded-3">
+          <!-- Header Section -->
           <div class="header text-center mb-4">
-            <h1 class="text-light"><span class="fw-bold">L</span>ogin</h1>
+            <h1 class="text-light">
+              <span class="fw-bold">L</span>ogin
+            </h1>
           </div>
+
+          <!-- Login Form -->
           <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-            <!-- E-mail input field -->
+            <!-- E-mail Input Field -->
             <div class="mb-3">
               <label for="email" class="form-label">E-mail</label>
               <input
@@ -21,12 +29,12 @@
                 id="email"
                 class="form-control bg-dark text-white border-0 rounded-3"
                 formControlName="email"
-                placeholder="Ingrese su correo"
+                placeholder="Enter your email"
                 required
               />
             </div>
 
-            <!-- Password input field -->
+            <!-- Password Input Field -->
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <input
@@ -34,18 +42,18 @@
                 id="password"
                 class="form-control bg-dark text-white border-0 rounded-3"
                 formControlName="password"
-                placeholder="Ingrese su contraseña"
+                placeholder="Enter your password"
                 required
               />
             </div>
 
-            <!-- Submit button -->
+            <!-- Submit Button -->
             <div class="d-grid">
               <button type="submit" class="btn btn-primary btn-lg rounded-3">Sign In</button>
             </div>
           </form>
 
-          <!-- Info message -->
+          <!-- Info Message -->
           <div class="alert alert-info mt-4 text-center">
             <b>If you don't have an account, please contact your employer.</b>
           </div>

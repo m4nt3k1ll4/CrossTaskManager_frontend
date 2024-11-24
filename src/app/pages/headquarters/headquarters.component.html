@@ -1,86 +1,81 @@
-<div class="tab-pane fade show active" id="adviser" role="tabpanel">
-
-  <!-- Encabezado -->
+<div class="tab-pane fade show active" id="Headquarter" role="tabpanel">
+  <!-- Header Section -->
   <div class="row mb-3">
     <div class="col-6">
-      <h2>Sedes</h2>
+      <h2>Headquarters</h2>
     </div>
     <div class="col-6 text-end">
-      <button
-        class="btn btn-success shadow-sm rounded-pill"
-      >
-        <i class="bi bi-person-plus-fill me-2"></i>Agregar Sede
+      <!-- New Headquarter Button -->
+      <button class="btn btn-success shadow-sm rounded-pill" (click)="initHeadquarter()">
+        <i class="bi bi-person-plus-fill me-2"></i>New Headquarter
       </button>
     </div>
   </div>
-<!-- contenedor del formulario -->
-  <section class="mb-4 p-4 shadow rounded border bg-light" >
-    <form>
-      <h4 class="text-center mb-4 fw-bold">Detalle Sede</h4>
+
+  <!-- Form Container, displayed only when showForm is true -->
+  <section class="mb-4 p-4 shadow rounded border bg-light" *ngIf="showForm">
+    <form [formGroup]="myForm" (ngSubmit)="formSubmitHeadquarter(myForm)">
+      <h4 class="text-center mb-4 fw-bold">Add Headquarters</h4>
+
+      <!-- Headquarters Name and Manager Fields -->
       <div class="row g-3 mb-3">
         <div class="col-md-6">
-          <label for="headquarterName" class="form-label fw-semibold"
-            >Nombre de la Sede</label
-          >
+          <label for="headquarterName" class="form-label fw-semibold">Headquarters Name</label>
           <input
             formControlName="name"
             type="text"
             class="form-control"
             name="headquarterName"
-            placeholder="Enter headquarter name"
+            placeholder="Enter a headquarter name"
           />
         </div>
 
         <div class="col-md-6">
-          <label for="manager" class="form-label fw-semibold">Lider de Sede</label>
+          <label for="manager" class="form-label fw-semibold">Headquarters Leader</label>
           <select
             formControlName="manager_id"
             class="form-select"
             aria-label="Select Manager"
             name="manager"
           >
-            <option selected>--Selecciona el Lider de Sede--</option>
-            <option>
-
+            <option selected>--Select Headquarters Leader--</option>
+            <option *ngFor="let manager of uniqueManagers" [value]="manager.id">
+              {{ manager.name }}
             </option>
           </select>
         </div>
       </div>
 
+      <!-- Submit and Close Buttons -->
       <div class="d-flex justify-content-between mt-3">
         <button type="submit" class="btn btn-primary shadow-sm">
-          <span
-            class="spinner-grow spinner-grow-sm me-2"
-          ></span>
+          {{ myForm.value.id ? "Update Headquarters" : "Add Headquarters" }}
+          <span class="spinner-grow spinner-grow-sm me-2"></span>
         </button>
 
-        <button
-          type="button"
-          class="btn btn-danger shadow-sm"
-        >
+        <!-- Close Form Button -->
+        <button type="button" class="btn btn-danger shadow-sm" (click)="close()">
           <i class="bi bi-x-circle me-2"></i>Close
         </button>
       </div>
     </form>
   </section>
 
-<!-- tabla de datos empleados -->
-  <div class="table-responsive" >
-    <table
-      class="table table-striped table-hover table-bordered rounded-3 shadow-sm overflow-hidden"
-    >
+  <!-- Data Table for Headquarters, displayed only when showForm is false -->
+  <div class="table-responsive" *ngIf="!showForm">
+    <table class="table table-striped table-hover table-bordered rounded-3 shadow-sm overflow-hidden">
       <thead class="table-dark">
         <tr>
-          <th>Id</th>
-          <th>Headquarter Name</th>
-          <th>Manager</th>
+          <th>ID</th>
+          <th>Headquarters Name</th>
+          <th>Administrator</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-      <!-- animacion de carga -->
-        <tr >
-          <td colspan="7" class="text-center">
+        <!-- Loading Spinner Row -->
+        <tr *ngIf="loading">
+          <td colspan="4" class="text-center">
             <div class="spinner-grow text-muted"></div>
             <div class="spinner-grow text-primary"></div>
             <div class="spinner-grow text-success"></div>
@@ -89,24 +84,24 @@
             <div class="spinner-grow text-danger"></div>
           </td>
         </tr>
-    <!-- datos traidos -->
-        <tr >
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-primary btn-sm rounded-pill"
 
-            >
+        <!-- Headquarters Data Rows -->
+        <tr *ngFor="let headquarter of headquarter">
+          <td>{{ headquarter.id }}</td>
+          <td>{{ headquarter.name }}</td>
+          <td>{{ getManagerName(headquarter.manager_id) }}</td>
+          <td>
+            <!-- Edit Headquarters Button -->
+            <button type="button" class="btn btn-primary btn-sm rounded-pill" (click)="updateHeadquarter(headquarter)">
               Edit
             </button>
+            <!-- Delete Headquarters Button -->
             <button
               type="button"
               class="btn btn-danger btn-sm rounded-pill mx-2"
+              (click)="deleteHeadquarter(headquarter.id)"
             >
-             Delete
+              Delete
             </button>
           </td>
         </tr>
@@ -114,4 +109,3 @@
     </table>
   </div>
 </div>
-

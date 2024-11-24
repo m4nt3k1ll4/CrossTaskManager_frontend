@@ -63,7 +63,7 @@ export class EmployeesComponent {
     this.loading = true;
     this.usersService.getEmployees().subscribe({
       next: (response) => {
-        console.log(response);
+        //console.log(response);
         this.employees = response;
         this.filterUniqueRoles();
         this.loading = false;
@@ -94,8 +94,9 @@ export class EmployeesComponent {
   }
 
   formSubmitEmployee(form: FormGroup): void {
-    console.log(form);
+    //console.log(form);
     const employee: User = {
+      'id': form.value.id,
       'name': form.value.name,
       'email': form.value.email,
       'password': form.value.password,
@@ -115,7 +116,7 @@ export class EmployeesComponent {
           this.usersService.updateEmployees(employee, form.value.id).subscribe(
             (data) => {
               this.getEmployees();
-              console.log(data);
+              //console.log(data);
               this.close();
             },
             (error) => {
@@ -128,7 +129,7 @@ export class EmployeesComponent {
       this.usersService.addEmployees(employee).subscribe(
         (data) => {
           this.getEmployees();
-          console.log(data);
+          //console.log(data);
           this.close();
         },
         (error) => {
@@ -155,7 +156,7 @@ export class EmployeesComponent {
         this.usersService.deleteEmployees(id).subscribe(
           (data) => {
             this.getEmployees();
-            console.log(data);
+            //console.log(data);
           },
           (error) => {
             console.error('Error deleting employee:', error);

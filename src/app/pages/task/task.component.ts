@@ -70,7 +70,7 @@ export class TaskComponent {
     this.loading = true;
     this.taskService.getTask().subscribe({
       next: (response) => {
-        console.log(response);
+        //console.log(response);
         this.tasks = response;
         this.loading = false;
       },
@@ -90,8 +90,8 @@ export class TaskComponent {
 
 
   formSubmitTask(form: FormGroup) {
-    console.log(form);
-    //const dueDate = this.convertDateFormat(form.value.due_date);
+    //console.log(form);
+
     const dueDate = form.value.due_date;
 
     const task: Task = {
@@ -103,7 +103,7 @@ export class TaskComponent {
       'comments': form.value.comments,
       'images': form.value.images,
     };
-    console.log(task);
+    //console.log(task);
     if (form.value.id) {
       Swal.fire({
         title: 'Are you sure?',
@@ -117,7 +117,7 @@ export class TaskComponent {
           this.taskService.updateTask(task, form.value.id).subscribe(
             (data) => {
               this.getTask();
-              console.log(data);
+              //console.log(data);
               this.close();
             },
             (error) => {
@@ -130,7 +130,7 @@ export class TaskComponent {
       this.taskService.addTask(task).subscribe(
         (data) => {
           this.getTask();
-          console.log(data);
+          //console.log(data);
           this.close();
         },
         (error) => {
@@ -140,7 +140,6 @@ export class TaskComponent {
     }
   }
   updateTask(task: Task) {
-    //const formattedDate = this.convertDateFormat(task.due_date);
     this.initForm(task.id, task.title, task.description, task.priority, task.due_date);
     this.showForm = true;
   }
@@ -159,7 +158,7 @@ export class TaskComponent {
         this.taskService.deleteTask(id).subscribe(
           (data) => {
             this.getTask();
-            console.log(data);
+            //console.log(data);
           },
           (error) => {
             console.error('Error deleting task:', error);
@@ -169,4 +168,3 @@ export class TaskComponent {
     })
   }
 }
-
