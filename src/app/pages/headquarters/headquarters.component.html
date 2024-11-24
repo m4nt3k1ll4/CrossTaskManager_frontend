@@ -1,71 +1,47 @@
-
 <div class="tab-pane fade show active" id="adviser" role="tabpanel">
 
   <!-- Encabezado -->
   <div class="row mb-3">
     <div class="col-6">
-      <h2>Empleados</h2>
+      <h2>Sedes</h2>
     </div>
     <div class="col-6 text-end">
       <button
         class="btn btn-success shadow-sm rounded-pill"
-        (click)="initEmployees()"
       >
-        <i class="bi bi-person-plus-fill me-2"></i>Add Employee
+        <i class="bi bi-person-plus-fill me-2"></i>Agregar Sede
       </button>
     </div>
   </div>
-
-  <section class="mb-4 p-4 shadow rounded border bg-light" *ngIf="showForm">
-    <form [formGroup]="myForm" (ngSubmit)="formSubmitEmployee(myForm)">
-      <h4 class="text-center mb-4 fw-bold">Employee Details</h4>
+<!-- contenedor del formulario -->
+  <section class="mb-4 p-4 shadow rounded border bg-light" >
+    <form>
+      <h4 class="text-center mb-4 fw-bold">Detalle Sede</h4>
       <div class="row g-3 mb-3">
         <div class="col-md-6">
-          <label for="employeeName" class="form-label fw-semibold"
-            >Employee Name</label
+          <label for="headquarterName" class="form-label fw-semibold"
+            >Nombre de la Sede</label
           >
           <input
             formControlName="name"
             type="text"
             class="form-control"
-            name="employeeName"
-            placeholder="Enter employee's name"
+            name="headquarterName"
+            placeholder="Enter headquarter name"
           />
         </div>
-        <div class="col-md-6">
-          <label for="email" class="form-label fw-semibold">Email</label>
-          <input
-            formControlName="email"
-            type="email"
-            class="form-control"
-            name="emailId"
-            placeholder="Enter employee's email"
-          />
-        </div>
-      </div>
 
-      <div class="row g-3 mb-3">
         <div class="col-md-6">
-          <label for="Password" class="form-label fw-semibold">Password</label>
-          <input
-            formControlName="password"
-            type="password"
-            class="form-control"
-            name="password"
-            placeholder="Enter a secure password"
-          />
-        </div>
-        <div class="col-md-6">
-          <label for="role" class="form-label fw-semibold">Role</label>
+          <label for="manager" class="form-label fw-semibold">Lider de Sede</label>
           <select
-            formControlName="role_id"
+            formControlName="manager_id"
             class="form-select"
-            aria-label="Select Role"
-            name="role"
+            aria-label="Select Manager"
+            name="manager"
           >
-            <option selected>--Select Role of the Employee--</option>
-            <option *ngFor="let role of uniqueRoles" [value]="role.role.id">
-              {{ role.role.name }}
+            <option selected>--Selecciona el Lider de Sede--</option>
+            <option>
+
             </option>
           </select>
         </div>
@@ -73,17 +49,14 @@
 
       <div class="d-flex justify-content-between mt-3">
         <button type="submit" class="btn btn-primary shadow-sm">
-          {{ myForm.value.id ? "Update Employee" : "Add employee" }}
           <span
             class="spinner-grow spinner-grow-sm me-2"
-            *ngIf="loading"
           ></span>
         </button>
 
         <button
           type="button"
           class="btn btn-danger shadow-sm"
-          (click)="close()"
         >
           <i class="bi bi-x-circle me-2"></i>Close
         </button>
@@ -92,21 +65,21 @@
   </section>
 
 <!-- tabla de datos empleados -->
-  <div class="table-responsive" *ngIf="!showForm">
+  <div class="table-responsive" >
     <table
       class="table table-striped table-hover table-bordered rounded-3 shadow-sm overflow-hidden"
     >
       <thead class="table-dark">
         <tr>
-          <th>ID</th>
-          <th>Employee Name</th>
-          <th>Email</th>
-          <th>Role</th>
+          <th>Id</th>
+          <th>Headquarter Name</th>
+          <th>Manager</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngIf="loading">
+      <!-- animacion de carga -->
+        <tr >
           <td colspan="7" class="text-center">
             <div class="spinner-grow text-muted"></div>
             <div class="spinner-grow text-primary"></div>
@@ -116,24 +89,22 @@
             <div class="spinner-grow text-danger"></div>
           </td>
         </tr>
-
-        <tr *ngFor="let user of employees">
-          <td>{{ user.id }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.role?.name }}</td>
+    <!-- datos traidos -->
+        <tr >
+          <td></td>
+          <td></td>
+          <td></td>
           <td>
             <button
               type="button"
               class="btn btn-primary btn-sm rounded-pill"
-              (click)="updateEmployees(user)"
+
             >
               Edit
             </button>
             <button
               type="button"
               class="btn btn-danger btn-sm rounded-pill mx-2"
-              (click)="deleteEmployees(user.id)"
             >
              Delete
             </button>
@@ -143,3 +114,4 @@
     </table>
   </div>
 </div>
+

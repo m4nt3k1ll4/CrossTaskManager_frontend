@@ -1,14 +1,116 @@
+<!-- header -->
 <div class="tab-pane fade show active" id="projects" role="tabpanel">
   <div class="row mb-3">
     <div class="col-6">
       <h2>Tasks</h2>
     </div>
     <div class="col-6 text-end">
-      <button routerLink="/task-assign/0" class="btn btn-success rounded-pill">New Task</button>
+      <button class="btn btn-success rounded-pill" (click)="initTask()">
+        New Task
+      </button>
     </div>
   </div>
+
+  <!-- formulario de tareas -->
+  <section class="card shadow-sm rounded-3" *ngIf="showForm">
+    <div class="card-header bg-dark text-white fw-bold">
+      <h5 class="mb-0">Task Management</h5>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="myForm" (ngSubmit)="formSubmitTask(myForm)">
+        <div class="row">
+          <!-- Campo de Task Name -->
+          <div class="col-md-6 mb-3">
+            <label for="taskName" class="form-label fw-bold">Task Name</label>
+            <input
+              formControlName="title"
+              type="text"
+              id="taskName"
+              class="form-control"
+              placeholder="Enter task title"
+            />
+          </div>
+          <!-- Campo de Priority -->
+          <div class="col-md-6 mb-3">
+            <label for="priority" class="form-label fw-bold">Priority</label>
+            <select
+              formControlName="priority"
+              class="form-select"
+              aria-label="Select Priority"
+              name="priority"
+            >
+              <option selected>--Ingresa el nivel de prioridad--</option>
+              <option *ngFor="let option of priorityOptions">{{ option.label }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Campo de Description -->
+          <div class="col-md-12 mb-3">
+            <label for="description" class="form-label fw-bold"
+              >Description</label
+            >
+            <textarea
+              formControlName="description"
+              id="description"
+              class="form-control"
+              rows="3"
+              placeholder="Enter task description"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Campo de Due Date -->
+          <div class="col-md-6 mb-3">
+            <label for="dueDate" class="form-label fw-bold">Due Date</label>
+            <input
+              formControlName="due_date"
+              type="date"
+              id="dueDate"
+              class="form-control"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Botón de Submit -->
+          <div class="col-md-6 d-flex align-items-end">
+            <button
+              type="submit"
+              class="btn btn-primary rounded-pill w-100 shadow-sm"
+            >
+              {{ myForm.value.id ? "Update Task" : "Add Task" }}
+              <span
+                class="spinner-grow spinner-grow-sm me-2"
+                *ngIf="loading"
+              ></span>
+            </button>
+          </div>
+          <!-- Botón de Cancelar -->
+          <div class="col-md-6 d-flex align-items-end">
+            <button
+              type="button"
+              class="btn btn-danger rounded-pill w-100 shadow-sm"
+              (click)="close()"
+            >
+              <i class="bi bi-x-circle me-2"></i>Close
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <br />
+
+  <!-- tabla de tareas -->
+
   <div class="table-responsive" *ngIf="!showForm">
-    <table class="table table-bordered table-striped table-hover rounded-3 overflow-hidden">
+    <table
+      class="table table-bordered table-striped table-hover rounded-3 overflow-hidden"
+    >
       <thead class="table-dark">
         <tr>
           <th>ID</th>
@@ -37,12 +139,24 @@
           <td>{{ task.title }}</td>
           <td>{{ task.description }}</td>
           <td>{{ task.priority }}</td>
-          <td>{{ task.due_date}}</td>
+          <td>{{ task.due_date | dateFormat }}</td>
           <td>{{ task.comments.length }}</td>
           <td>{{ task.images.length }}</td>
           <td>
-            <button type="button" class="btn btn-primary btn-sm rounded-pill">Edit</button>
-            <button type="button" class="btn btn-danger btn-sm rounded-pill mx-2">Delete</button>
+            <button
+              type="button"
+              class="btn btn-primary btn-sm rounded-pill"
+              (click)="updateTask(task)"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm rounded-pill mx-2"
+              (click)="deleteTask(task.id)"
+            >
+              Delete
+            </button>
           </td>
         </tr>
       </tbody>

@@ -21,7 +21,6 @@ import Swal from 'sweetalert2';
   ],
   templateUrl: './employees.component.html',
   styleUrl: './employees.component.css',
-
 })
 export class EmployeesComponent {
   showForm: boolean = false;

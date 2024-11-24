@@ -22,4 +22,13 @@ export class TaskService {
   addTask(task: Task): Observable<Task[]> {
     return this.httpClient.post<Task[]>(`${this.apiUrl}/tasks`, task);
   }
+
+  updateTask(task: Task, id?: number): Observable<Task[]> {
+    return this.httpClient.put<Task[]>(`${this.apiUrl}/tasks/${id}`, task);
+  }
+
+  deleteTask(id: number): Observable<Task[]> {
+    return this.httpClient.delete<Task[]>(`${this.apiUrl}/tasks/${id}`);
+  }
+
 }
