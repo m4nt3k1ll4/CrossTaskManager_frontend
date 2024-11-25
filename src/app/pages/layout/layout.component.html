@@ -1,30 +1,35 @@
 <div class="">
   <header class="navbar navbar-expand-lg navbar-light bg-dark py-2 mb-4 border-bottom">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-      <a href="/" class="navbar-brand d-flex align-items-center" aria-label="Go to home">
+      <a href="/" class="navbar-brand d-flex align-items-center" aria-label="Go to home" >
         <img src="logoBanner.png" alt="Cross Task Manager Logo" width="140" height="50" class="me-2" />
       </a>
 
       <nav class="d-flex flex-wrap align-items-center">
         <ul class="navbar-nav d-flex flex-row">
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="showLink('manage-users')">
             <a routerLink="/dashboard" routerLinkActive="active" class="nav-link text-white px-2" aria-label="Go to Dashboard">Dashboard</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="showLink('manage-users')">
             <a routerLink="/employees" routerLinkActive="active" class="nav-link text-white px-2" aria-label="Go to Employees">Empleados</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="showLink('manage-users')">
             <a routerLink="/headquarters" routerLinkActive="active" class="nav-link text-white px-2" aria-label="Go to Headquarters">Sedes</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="showLink('manage-users')">
             <a routerLink="/task" routerLinkActive="active" class="nav-link text-white px-2" aria-label="Go to Tasks">Tareas</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="showLink('manage-users')">
             <a routerLink="/task-assign" routerLinkActive="active" class="nav-link text-white px-2" aria-label="Go to Task Assignment">Asignación</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/adviser-view" routerLinkActive="active" class="nav-link text-white px-2" aria-label="Go to Headquarters">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/adviser-task" routerLinkActive="active" class="nav-link text-white px-2" aria-label="Go to Headquarters">Tareas</a>
           </li>
         </ul>
       </nav>
-
       <div class="ms-2">
         <button type="button" class="btn btn-outline-light" (click)="authService.logout()">LogOut</button>
       </div>

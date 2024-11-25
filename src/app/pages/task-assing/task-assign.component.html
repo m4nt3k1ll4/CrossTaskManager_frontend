@@ -13,35 +13,40 @@
           <table class="table table-bordered table-striped table-hover rounded-3 overflow-hidden">
             <thead class="table-dark">
               <tr>
-                <th>Task ID</th>
+                <th>ID</th>
                 <th>Task Name</th>
                 <th>Employee Assigned</th>
+                <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              <!-- Mock Data: Example Task -->
-              <tr>
-                <td>1</td>
-                <td>Example Task</td>
-                <td>John Doe</td>
-                <td>
-                  <!-- Edit Button -->
-                  <button type="button" class="btn btn-primary btn-sm rounded-pill">Edit</button>
-                  <!-- Delete Button -->
-                  <button type="button" class="btn btn-danger btn-sm rounded-pill mx-2">Delete</button>
+              <!-- Loading Spinner Row -->
+              <tr *ngIf="loading">
+                <td colspan="5" class="text-center">
+                  <div class="spinner-grow text-muted"></div>
+                  <div class="spinner-grow text-primary"></div>
+                  <div class="spinner-grow text-success"></div>
+                  <div class="spinner-grow text-info"></div>
+                  <div class="spinner-grow text-warning"></div>
+                  <div class="spinner-grow text-danger"></div>
                 </td>
               </tr>
-              <!-- Mock Data: Another Task -->
-              <tr>
-                <td>2</td>
-                <td>Another Task</td>
-                <td>Jane Smith</td>
+              <!-- Dynamic Data Rows -->
+              <tr *ngFor="let task of userTasks">
+                <td>{{ task.id }}</td>
+                <td>{{ task.task_title }}</td>
+                <td>{{ task.user_name }}</td>
+                <td>{{ task.status }}</td>
                 <td>
-                  <!-- Edit Button -->
-                  <button type="button" class="btn btn-primary btn-sm rounded-pill">Edit</button>
                   <!-- Delete Button -->
-                  <button type="button" class="btn btn-danger btn-sm rounded-pill mx-2">Delete</button>
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm rounded-pill mx-2"
+                    (click)="unassignTask(task.id)"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -60,30 +65,32 @@
       </div>
       <!-- Card Body -->
       <div class="card-body">
-        <form>
+        <form [formGroup]="myForm" (ngSubmit)="formAssignTask(myForm)">
           <div class="row">
             <!-- Task ID Field -->
             <div class="col-md-6 mb-3">
               <label for="projectId" class="form-label fw-bold">Task ID</label>
-              <select class="form-select" id="projectId" formControlName="projectId">
+              <select class="form-select" id="projectId" formControlName="task_id">
                 <option value="" selected>--Select Task--</option>
-                <option value="1">Task 1</option>
-                <option value="2">Task 2</option>
+                <option *ngFor="let task of  tasks">
+                  {{task.title}}
+                </option>
               </select>
             </div>
             <!-- Employee ID Field -->
             <div class="col-md-6 mb-3">
-              <label for="empId" class="form-label fw-bold">Employee ID</label>
-              <select class="form-select" id="empId" formControlName="empId">
+              <label for="user_id" class="form-label fw-bold">Employee ID</label>
+              <select class="form-select" id="user_id" formControlName="user_id">
                 <option value="" selected>--Select Employee--</option>
-                <option value="1">John Doe</option>
-                <option value="2">Jane Smith</option>
+                <option *ngFor="let user of users" >
+                  {{ user.name}}
+                </option>
               </select>
             </div>
           </div>
           <!-- Assign Button -->
           <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-primary rounded-pill">Assign</button>
+            <button type="submit" class="btn btn-primary rounded-pill">Assign</button>
           </div>
         </form>
       </div>

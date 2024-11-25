@@ -3,7 +3,7 @@
     <div class="col-6">
       <h2>Tareas</h2>
     </div>
-    <div class="col-6 text-end">
+    <div class="col-6 text-end" *ngIf="showLink('manage-users')">
       <button class="btn btn-success rounded-pill" (click)="initTask()">
         New Task
       </button>
@@ -116,9 +116,9 @@
           <th>Description</th>
           <th>Priority</th>
           <th>Due Date</th>
-          <th>Comment</th>
-          <th>Image URL</th>
-          <th>Actions</th>
+          <th *ngIf="showLink('manage-users')">Comment</th>
+          <th *ngIf="showLink('manage-users')">Image URL</th>
+          <th *ngIf="showLink('manage-users')">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -138,9 +138,9 @@
           <td>{{ task.description }}</td>
           <td>{{ task.priority }}</td>
           <td>{{ task.due_date | dateFormat }}</td>
-          <td>{{ task.comments.length }}</td>
-          <td>{{ task.images.length }}</td>
-          <td>
+          <td *ngIf="showLink('manage-users')">{{ task.comments.length }}</td>
+          <td *ngIf="showLink('manage-users')">{{ task.images.length }}</td>
+          <td *ngIf="showLink('manage-users')">
             <button
               type="button"
               class="btn btn-primary btn-sm rounded-pill"

@@ -39,4 +39,19 @@ export class AuthService {
   isAuthenticated(): boolean {
     return this.getToken() !== null;
   }
+
+  decodeJwt(token: string): any {
+    return JSON.parse(atob(token.split('.')[1]));
+  }
+  getScopes(){
+    const token = this.getToken();
+    if (token != null){
+      const decodedToken = this.decodeJwt(token);
+      return decodedToken.scopes;
+    }
+  }
+  hasScope(scope : string): boolean {
+    const scopes = this.getScopes();
+    return scopes.includes(scope);
+  }
 }

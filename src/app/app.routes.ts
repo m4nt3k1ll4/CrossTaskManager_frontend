@@ -7,6 +7,8 @@ import { EmployeesComponent } from './pages/employees/employees.component';
 import { TaskComponent } from './pages/task/task.component';
 import { authGuard } from './core/guards/auth.guard';
 import { HeadquartersComponent } from './pages/headquarters/headquarters.component';
+import { AdviserDashboardComponent } from './pages/adviser-dashboard/adviser-dashboard.component';
+import { TaskDetailComponent } from './pages/task-detail/task-detail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -18,7 +20,8 @@ export const routes: Routes = [
       { path: 'headquarters', component: HeadquartersComponent},
       { path: 'task', component: TaskComponent },
       { path: 'task-assign', component: TaskAssignComponent },
-
+      { path: 'adviser-view', component: AdviserDashboardComponent},
+      { path: 'adviser-task', component:TaskDetailComponent},
     ]
   },
   { path: '**', redirectTo: 'dashboard' }

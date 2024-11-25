@@ -1,7 +1,9 @@
 import { Task } from '../models/task.model';
+import { UserTask } from '../models/user-task.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject} from '@angular/core';
 import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
 
 
 
@@ -29,6 +31,20 @@ export class TaskService {
 
   deleteTask(id: number): Observable<Task[]> {
     return this.httpClient.delete<Task[]>(`${this.apiUrl}/tasks/${id}`);
+  }
+
+  getUsersAndTask(): Observable<{tasks : Task[]; users : User[]}> {
+    return this.httpClient.get<{tasks : Task[]; users : User[]}>(`${this.apiUrl}/tasks-view`);
+  }
+  getAssignTask(): Observable<UserTask[]>{
+    return this.httpClient.get<UserTask[]>(`${this.apiUrl}/tasks-assigned`);
+  }
+
+  AssignTask(userTask: UserTask): Observable<UserTask[]>{
+    return this.httpClient.post<UserTask[]>(`${this.apiUrl}/tasks-assign`, userTask);
+  }
+  deleteAssignTask(id: number): Observable<UserTask[]>{
+    return this.httpClient.delete<UserTask[]>(`${this.apiUrl}/tasks/unassign/${id}`);
   }
 
 }

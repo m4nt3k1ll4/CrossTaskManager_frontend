@@ -7,13 +7,15 @@ import Swal from 'sweetalert2';
 import { Comment } from '../../models/comment.model';
 import { Image } from '../../models/image.model';
 import { DateFormatPipe } from '../../pipes/date-format.pipe';
+import { AuthService } from '../../services/auth.service';
 
 
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  providers: [TaskService],
+  providers: [TaskService,
+             AuthService],
   imports: [
     NgFor,
     FormsModule,
@@ -36,13 +38,16 @@ export class TaskComponent {
     {label:'high', value:Priority.High},
   ];
 
-
   constructor(
+    private authService: AuthService,
     private taskService: TaskService,
     private formBuilder: FormBuilder,
   ) {
     this.initForm();
   }
+  showLink(scopeToEvaluate : string){
+    return this.authService.hasScope(scopeToEvaluate)
+   }
   ngOnInit(): void {
     this.getTask();
   }

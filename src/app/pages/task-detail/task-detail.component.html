@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <div class="card shadow-sm rounded-3 bg-white">
+    <div class="card-header bg-dark text-white">
+      <h5 class="mb-0">Detalles de la Tarea</h5>
+    </div>
+    <div class="card-body">
+
+      <h6 class="fw-bold">Título: </h6>
+      <p>Estado:
+        <span class="badge bg-success rounded-pill">Completada</span>
+
+      </p>
+      <p>Descripción: Aquí va la descripción de la tarea.</p>
+      <hr>
+
+
+      <h6 class="fw-bold">Comentarios</h6>
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Comentario de ejemplo
+          <button class="btn btn-danger btn-sm rounded-pill">Eliminar</button>
+        </li>
+
+      </ul>
+      <textarea class="form-control mb-3" placeholder="Agregar comentario..."></textarea>
+      <button class="btn btn-success rounded-pill mb-3">Agregar</button>
+
+      <h6 class="fw-bold">Evidencia Fotográfica</h6>
+      <div class="mb-3">
+        <div class="mb-2 d-flex align-items-center">
+          <img src="ruta-a-la-imagen" class="img-thumbnail" alt="Evidencia" style="width: 150px;">
+          <button class="btn btn-danger btn-sm rounded-pill ms-3">Eliminar</button>
+        </div>
+
+
+      </div>
+      <input type="file" class="form-control mb-3">
+      <button class="btn btn-primary rounded-pill mb-3">Subir Foto</button>
+
+
+
+      <h6 class="fw-bold">Actualizar Estado</h6>
+      <select class="form-select mb-3 rounded-pill">
+        <option value="uncompleted">Uncompleted</option>
+        <option value="completed">Completed</option>
+      </select>
+      <button class="btn btn-success rounded-pill">Guardar Cambios</button>
+    </div>
+  </div>
+</div>
