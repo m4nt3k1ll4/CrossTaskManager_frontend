@@ -72,7 +72,7 @@
               <label for="projectId" class="form-label fw-bold">Task ID</label>
               <select class="form-select" id="projectId" formControlName="task_id">
                 <option value="" selected>--Select Task--</option>
-                <option *ngFor="let task of  tasks">
+                <option *ngFor="let task of  tasks" [value]="task.id" >
                   {{task.title}}
                 </option>
               </select>
@@ -82,7 +82,7 @@
               <label for="user_id" class="form-label fw-bold">Employee ID</label>
               <select class="form-select" id="user_id" formControlName="user_id">
                 <option value="" selected>--Select Employee--</option>
-                <option *ngFor="let user of users" >
+                <option *ngFor="let user of users" [value]="user.id">
                   {{ user.name}}
                 </option>
               </select>

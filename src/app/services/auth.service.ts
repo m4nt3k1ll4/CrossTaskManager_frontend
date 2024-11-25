@@ -16,14 +16,12 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(email: string, password: string): Observable<any> {
-    console.log(email,password)
     return this.httpClient.post(`${this.apiUrl}/login`, { email, password });
   }
 
   setToken(token: string): void {
     this.token = token;
     localStorage.setItem('access_token', token);
-    console.log(token);
   }
 
   getToken(): string | null {

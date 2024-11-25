@@ -40,11 +40,15 @@ export class TaskService {
     return this.httpClient.get<UserTask[]>(`${this.apiUrl}/tasks-assigned`);
   }
 
+  updateAssignTask(userTask: UserTask, id?:number): Observable<UserTask[]>{
+    return this.httpClient.put<UserTask[]>(`${this.apiUrl}/tasks-assigned/${id}`, userTask);
+  }
+
   AssignTask(userTask: UserTask): Observable<UserTask[]>{
     return this.httpClient.post<UserTask[]>(`${this.apiUrl}/tasks-assign`, userTask);
   }
   deleteAssignTask(id: number): Observable<UserTask[]>{
-    return this.httpClient.delete<UserTask[]>(`${this.apiUrl}/tasks/unassign/${id}`);
+    return this.httpClient.delete<UserTask[]>(`${this.apiUrl}/tasks-unassign/${id}`);
   }
 
 }

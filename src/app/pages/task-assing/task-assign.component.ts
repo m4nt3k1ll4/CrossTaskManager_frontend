@@ -83,13 +83,16 @@ export class TaskAssignComponent {
     );
   }
   formAssignTask(form: FormGroup) {
+    const selectedUser = this.users.find((user) => user.id === form.value.user_id);
+    const selectedTask = this.tasks.find((task) => task.id === form.value.task_id);
+
     const userTask: UserTask = {
       id: form.value.id,
       user_id: form.value.user_id,
       task_id: form.value.task_id,
       status: form.value.status,
-      user_name: form.value.user.name,
-      task_title: form.value.task.title,
+      user_name: selectedUser ? selectedUser.name : '',
+      task_title: selectedTask ? selectedTask.title : '',
     };
     this.TaskService.AssignTask(userTask).subscribe(
       (data) => {
@@ -99,6 +102,10 @@ export class TaskAssignComponent {
         console.error('Error assigning task:', error);
       }
     );
+  }
+
+  updateAssignTask(userTask:UserTask){
+    this.initForm(userTask.id, userTask.status);
   }
   unassignTask(id: number = 0):void {
     Swal.fire({
@@ -110,7 +117,7 @@ export class TaskAssignComponent {
       cancelButtonText: 'No, cancel!',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.TaskService.deleteTask(id).subscribe(
+        this.TaskService.deleteAssignTask(id).subscribe(
           (data) => {
             this.getAssignTasks();
             console.log(data);
