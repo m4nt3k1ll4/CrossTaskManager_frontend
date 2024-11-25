@@ -1,1 +1,78 @@
-<p>manager-dashboard works!</p>
+<div class="container my-5">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="dark">Dashboard - Sede <span class="text-secondary">[Nombre de la Sede]</span></h1>
+  </div>
+
+  <!-- Row 1: Tarjetas de Resumen -->
+  <div class="row mt-4"  >
+    <!-- Tarjeta Total Tareas Realizadas -->
+    <div class="col-md-6">
+      <div class="card bg-blue text-white">
+        <div class="card-body">
+          <h5 class="card-title">Total Tareas Realizadas</h5>
+          <h2 class="card-text">45</h2>
+        </div>
+      </div>
+    </div>
+    <!-- Tarjeta Total Tareas Pendientes -->
+    <div class="col-md-6">
+      <div class="card bg-green text-white">
+        <div class="card-body">
+          <h5 class="card-title">Total Tareas Pendientes</h5>
+          <h2 class="card-text">12</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2: Tabla de Tareas Pendientes -->
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Tareas Pendientes</h5>
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th>#</th>
+                <th>Responsable</th>
+                <th>Tareas Pendientes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Juan Pérez</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Ana López</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Mario Díaz</td>
+                <td>4</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gráfica de Rendimiento -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Rendimiento</h5>
+          <div class="text-center">
+            <p>Aquí irá una gráfica</p>
+            <div class="bg-light" style="height: 250px; border: 1px dashed gray;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
