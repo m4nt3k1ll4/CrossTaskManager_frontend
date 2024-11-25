@@ -6,6 +6,7 @@ import { Priority, Task } from '../../models/task.model';
 import Swal from 'sweetalert2';
 import { Comment } from '../../models/comment.model';
 import { Image } from '../../models/image.model';
+import { UserTask } from '../../models/user-task.model';
 import { DateFormatPipe } from '../../pipes/date-format.pipe';
 import { AuthService } from '../../services/auth.service';
 

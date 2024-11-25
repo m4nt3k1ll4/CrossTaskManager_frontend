@@ -96,6 +96,7 @@ export class TaskAssignComponent {
     };
     this.TaskService.AssignTask(userTask).subscribe(
       (data) => {
+        this.getAssignTasks()
         console.log('Task assigned successfully:', data);
       },
       (error) => {

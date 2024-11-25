@@ -101,6 +101,7 @@ export class EmployeesComponent {
       'email': form.value.email,
       'password': form.value.password,
       'role_id': form.value.role_id,
+      'headquarter_id': form.value.headquarter_id
     };
 
     if (form.value.id) {

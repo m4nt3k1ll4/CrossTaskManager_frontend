@@ -102,10 +102,11 @@
       <thead class="table-dark">
         <tr>
           <th>ID</th>
-          <th>Employee Name</th>
+          <th>Nombre Colaborador</th>
           <th>Email</th>
-          <th>Role</th>
-          <th>Actions</th>
+          <th>Rol</th>
+          <th>Sede</th>
+          <th>Aciones</th>
         </tr>
       </thead>
       <tbody>
@@ -127,6 +128,7 @@
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.role?.name }}</td>
+          <td>{{ user.headquarter?.name }}</td>
           <td>
             <!-- Edit Employee Button -->
             <button

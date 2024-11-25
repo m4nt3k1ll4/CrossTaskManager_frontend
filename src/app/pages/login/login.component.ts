@@ -33,7 +33,15 @@ export class LoginComponent {
       this.authService.login(email, password).subscribe({
         next: (response) => {
           this.authService.setToken(response.token);
-          this.router.navigate(['/dashboard']);
+
+          const role = this.authService.getRoleFromScopes();
+
+          const redirectPath =
+            role === 'ceo' ? '/dashboard' :
+            role === 'manager' ? '/manager-dashboard' :
+            '/adviser-view';
+
+          this.router.navigate([redirectPath]);
         },
         error: (err) => {
           console.error('Login failed:', err);
@@ -44,5 +52,6 @@ export class LoginComponent {
       this.errorMessage = 'Please fill out the form correctly.';
     }
   }
+
 }
 

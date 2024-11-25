@@ -28,28 +28,51 @@ export class AuthService {
     return this.token || localStorage.getItem('access_token');
   }
 
-  logout(): void {
-    this.token = null;
-    localStorage.removeItem('access_token');
-    this.router.navigate(['/login']);
+  getRoleFromScopes(): string {
+    const token = this.getToken();
+    if (token) {
+      const decodedToken = this.decodeJwt(token);
+      const scopes = decodedToken.scopes;
+      console.log(decodedToken, scopes);
+      if (scopes.includes('manage-users') && scopes.includes('manage-tasks') && scopes.includes('view-tasks')) {
+        return 'ceo';
+      } else if (scopes.includes('manage-tasks') && scopes.includes('view-tasks')) {
+        return 'manager';
+      } else if (scopes.includes('view-tasks')) {
+        return 'adviser';
+      }
+    }
+    return '';
   }
+
 
   isAuthenticated(): boolean {
     return this.getToken() !== null;
   }
 
   decodeJwt(token: string): any {
-    return JSON.parse(atob(token.split('.')[1]));
+    try {
+      return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+      console.error('Error decoding token:', e);
+      return null;
+    }
   }
-  getScopes(){
+  getScopes() {
     const token = this.getToken();
-    if (token != null){
+    if (token != null) {
       const decodedToken = this.decodeJwt(token);
       return decodedToken.scopes;
     }
   }
-  hasScope(scope : string): boolean {
+  hasScope(scope: string): boolean {
     const scopes = this.getScopes();
     return scopes.includes(scope);
+  }
+
+  logout(): void {
+    this.token = null;
+    localStorage.removeItem('access_token');
+    this.router.navigate(['/login']);
   }
 }

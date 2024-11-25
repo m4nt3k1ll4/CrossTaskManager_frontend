@@ -1,5 +1,6 @@
 import { Comment } from './comment.model';
 import { Image } from './image.model';
+import { UserTask } from './user-task.model';
 
 
 export enum Priority {
@@ -17,6 +18,7 @@ export class Task {
   comments: Comment[];
   images: Image[];
 
+
   constructor(json: any = {}) {
     this.id = json.id || 0;
     this.title = json.title || '';
@@ -30,6 +32,6 @@ export class Task {
       ? json.images.map((item: Image) => new Image(item))
       : [];
   }
-}
+}''
 
 
