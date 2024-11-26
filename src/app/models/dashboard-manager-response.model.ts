@@ -1,19 +1,18 @@
-import { PendingDashboardUser } from './pending-dashboard-user.model';
-
 export class DashboardManagerResponse {
-  headquarterName: string;
-  totalTasks: number;
-  completedTasks: number;
-  pendingTasks: number;
-  pendingUsers: PendingDashboardUser[];
+  headquarter_name: string;
+  total_tasks: number;
+  completed_tasks: number;
+  pending_tasks: number;
+  pending_users: { [key: string]: { task_title: string; user: string } };
 
   constructor(data: any) {
-    this.headquarterName = data.headquarter_name || '';
-    this.totalTasks = data.total_tasks || 0;
-    this.completedTasks = data.completed_tasks || 0;
-    this.pendingTasks = data.pending_tasks || 0;
-    this.pendingUsers = (data.pending_users || []).map(
-      (user: any) => new PendingDashboardUser(user)
-    );
+    this.headquarter_name = data.headquarter_name || '';
+    this.total_tasks = data.total_tasks || 0;
+    this.completed_tasks = data.completed_tasks || 0;
+    this.pending_tasks = data.pending_tasks || 0;
+    this.pending_users = data.pending_users || {};
+  }
+  getPendingUsersArray() {
+    return Object.values(this.pending_users);
   }
 }
