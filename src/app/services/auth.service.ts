@@ -33,7 +33,7 @@ export class AuthService {
     if (token) {
       const decodedToken = this.decodeJwt(token);
       const scopes = decodedToken.scopes;
-      console.log(decodedToken, scopes);
+      //console.log(decodedToken, scopes);
       if (scopes.includes('manage-users') && scopes.includes('manage-tasks') && scopes.includes('view-tasks')) {
         return 'ceo';
       } else if (scopes.includes('manage-tasks') && scopes.includes('view-tasks')) {
