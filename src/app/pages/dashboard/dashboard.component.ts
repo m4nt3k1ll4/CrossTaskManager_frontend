@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
   loading = true;
   errorMessage = '';
   headquarter: any;
-  colors = ["red", "green", "yellow"]
+  colors = ["red", "green", "yellow"];
 
   constructor(private dashboardService: DashboardService, private authService: AuthService) {}
 
@@ -52,13 +52,14 @@ export class DashboardComponent implements OnInit {
 
   getColor(index: number): string {
     const colors = ['bg-primary', 'bg-success', 'bg-warning', 'bg-danger', 'bg-info'];
-    return colors[index % colors.length]; // Cicla entre los colores
+    return colors[index % colors.length];
   }
+
 
   createGlobalTaskComparisonChart(): void {
     if (!this.ceoData) return;
 
-    // Preparar los datos para las barras
+
     const headquarterNames = this.ceoData.headquarters.map(h => h.headquarterName);
     const completedTasks = this.ceoData.headquarters.map(h => h.completedTasks);
     const pendingTasks = this.ceoData.headquarters.map(h => h.pendingTasks);
@@ -66,20 +67,20 @@ export class DashboardComponent implements OnInit {
     const ctx = document.getElementById('globalTaskComparisonChart') as HTMLCanvasElement;
 
     new Chart(ctx, {
-      type: 'bar',  // Cambiar el tipo de gráfico a 'bar' para barras agrupadas
+      type: 'bar',
       data: {
-        labels: headquarterNames, // Usamos los nombres de las sedes como etiquetas
+        labels: headquarterNames,
         datasets: [
           {
             label: 'Completed Tasks',
-            data: completedTasks,  // Datos para tareas completadas por sede
+            data: completedTasks,
             backgroundColor: 'rgba(75, 192, 192, 0.7)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1
           },
           {
             label: 'Pending Tasks',
-            data: pendingTasks,  // Datos para tareas pendientes por sede
+            data: pendingTasks,
             backgroundColor: 'rgba(255, 99, 132, 0.7)',
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1
@@ -90,9 +91,9 @@ export class DashboardComponent implements OnInit {
         responsive: true,
         scales: {
           y: {
-            beginAtZero: true,  // Asegura que el eje Y empiece en cero
+            beginAtZero: true,
             ticks: {
-              stepSize: 1  // Paso de la escala en el eje Y
+              stepSize: 1
             }
           }
         },
@@ -101,7 +102,7 @@ export class DashboardComponent implements OnInit {
             enabled: true,
             callbacks: {
               label: function (tooltipItem) {
-                return `${tooltipItem.dataset.label}: ${tooltipItem.raw} tasks`; // Personaliza los tooltips
+                return `${tooltipItem.dataset.label}: ${tooltipItem.raw} tasks`;
               }
             }
           }
