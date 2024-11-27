@@ -51,4 +51,8 @@ export class TaskService {
     return this.httpClient.delete<UserTask[]>(`${this.apiUrl}/tasks-unassign/${id}`);
   }
 
+  getAssignTaskById(id : number): Observable<UserTask>{
+    return this.httpClient.get<UserTask>(`${this.apiUrl}/tasks-assigned/${id}`);
+  }
+
 }

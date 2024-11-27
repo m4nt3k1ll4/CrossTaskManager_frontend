@@ -1,40 +1,38 @@
- <!-- completion cards -->
 <div class="container my-4">
-  <div class="row g-3 " style="--bs-columns: 3;" >
-    <!-- Widget: Ciudadela Tasks -->
-     <div class="col-md-4" *ngFor="let headquarter of ceoData?.headquarters; let i = index">
-         <div  class="card text-white shadow rounded-3" [ngClass]="getColor(i)">
-           <div class="card-header fw-bold">{{headquarter.headquarterName}} Tasks</div>
-           <div class="card-body">
-          <h5 class="card-title">Tasks</h5>
+  <!-- Widgets Section -->
+  <div class="row g-3" style="--bs-columns: 3;">
+    <!-- Widget: headquarter tasks -->
+    <div class="col-md-4" *ngFor="let headquarter of ceoData?.headquarters; let i = index">
+      <div class="card text-white shadow rounded-3" [ngClass]="getColor(i)">
+        <div class="card-header fw-bold">Tareas {{ headquarter.headquarterName }}</div>
+        <div class="card-body">
+          <h5 class="card-title">Tareas</h5>
           <p class="card-text">
-            <span>Total Assigned Tasks:</span> <strong>{{ headquarter.totalTasks }}</strong><br>
-            <span>Total Completed Tasks:</span> <strong>{{ headquarter.completedTasks }}</strong>
+            <span>Total Tareas Pendientes:</span> <strong>{{ headquarter.totalTasks }}</strong><br>
+            <span>Total Tareas Completadas:</span> <strong>{{ headquarter.completedTasks }}</strong>
           </p>
         </div>
+      </div>
     </div>
   </div>
-  </div>
 
-  <!-- Tables Section -->
+  <!-- Tables and Chart Section -->
   <div class="row mt-4">
     <!-- Pending Tasks Table -->
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="card shadow-sm rounded-3">
-        <div class="card-header bg-white text-dark fw-bold">Pending Tasks</div>
+        <div class="card-header bg-white text-dark fw-bold">Tareas Pendientes</div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered table-striped table-hover rounded-3 overflow-hidden">
               <thead class="table-dark">
                 <tr>
-                  <th>Task</th>
-                  <th>Assigned Employee</th>
+                  <th>Tarea</th>
+                  <th>Empleado Asignado</th>
                 </tr>
               </thead>
               <tbody>
-                <!-- Iterar sobre todas las sedes -->
                 <ng-container *ngFor="let headquarter of ceoData?.headquarters">
-                  <!-- Iterar sobre los usuarios con tareas pendientes -->
                   <tr *ngFor="let user of headquarter.pendingUsers">
                     <td>{{ user.taskTitle }}</td>
                     <td>{{ user.user }}</td>
@@ -47,26 +45,41 @@
       </div>
     </div>
 
-    <!-- Compliance Percentage Table -->
-    <div class="col-md-6">
-      <div class="card shadow-sm rounded-3">
-        <div class="card-header bg-white text-dark fw-bold">Compliance Percentage</div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover rounded-3 overflow-hidden">
-              <thead class="table-dark">
-                <tr>
-                  <th>Location</th>
-                  <th>Compliance Percentage</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let headquarter of ceoData?.headquarters">
-                  <td>{{ headquarter.headquarterName }}</td>
-                  <td>{{ headquarter.compliancePercentage }}%</td>
-                </tr>
-              </tbody>
-            </table>
+    <!-- Compliance Percentage Table and Chart -->
+    <div class="col-md-8">
+      <div class="row">
+        <!-- Compliance Percentage Table -->
+        <div class="col-md-12 mb-1">
+          <div class="card shadow-sm rounded-3">
+            <div class="card-header bg-white text-dark fw-bold">Cumplimiento</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover rounded-3 overflow-hidden">
+                  <thead class="table-dark">
+                    <tr>
+                      <th>Sede</th>
+                      <th>Porcentaje de Cumplimiento</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let headquarter of ceoData?.headquarters">
+                      <td>{{ headquarter.headquarterName }}</td>
+                      <td>{{ headquarter.compliancePercentage }}%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Global Task Comparison Chart -->
+        <div class="col-md-12">
+          <div class="card shadow-sm rounded-3">
+            <div class="card-header bg-white text-dark fw-bold">Rendimiento por Sede</div>
+            <div class="card-body">
+              <canvas id="globalTaskComparisonChart" width="200" height="100"></canvas>
+            </div>
           </div>
         </div>
       </div>
