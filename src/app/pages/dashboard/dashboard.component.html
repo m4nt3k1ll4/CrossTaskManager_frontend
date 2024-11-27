@@ -8,7 +8,7 @@
         <div class="card-body">
           <h5 class="card-title">Tareas</h5>
           <p class="card-text">
-            <span>Total Tareas Pendientes:</span> <strong>{{ headquarter.totalTasks }}</strong><br>
+            <span>Total Tareas :</span> <strong>{{ headquarter.totalTasks }}</strong><br>
             <span>Total Tareas Completadas:</span> <strong>{{ headquarter.completedTasks }}</strong>
           </p>
         </div>
@@ -23,8 +23,8 @@
       <div class="card shadow-sm rounded-3">
         <div class="card-header bg-white text-dark fw-bold">Tareas Pendientes</div>
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover rounded-3 overflow-hidden">
+          <div class="table-responsive" style="max-height: 662px; overflow-y: auto;">
+            <table class="table table-bordered table-striped table-hover rounded-3">
               <thead class="table-dark">
                 <tr>
                   <th>Tarea</th>
