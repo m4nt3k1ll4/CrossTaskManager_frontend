@@ -55,4 +55,10 @@ export class TaskService {
     return this.httpClient.get<UserTask>(`${this.apiUrl}/tasks-assigned/${id}`);
   }
 
+  postImages(id:number, file:File): Observable<any>{
+    const fd = new FormData();
+    fd.append('image', file, file.name );
+    return this.httpClient.post<any>(`${this.apiUrl}/task-images/${id}`, fd);
+  }
+
 }

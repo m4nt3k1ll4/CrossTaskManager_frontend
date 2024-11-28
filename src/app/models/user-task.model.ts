@@ -5,7 +5,7 @@ export class UserTask {
     status: string;
     user_name: string;
     task_title: string;
-
+    task?: Task;
     constructor(json: any = {}) {
       this.id = json.id || 0;
       this.user_id = json.user_id || '';
@@ -13,6 +13,7 @@ export class UserTask {
       this.status = json.status || '';
       this.user_name = json.user_name || '';
       this.task_title = json.task_title || '';
+      this.task = json.task ;
     }
 }
 

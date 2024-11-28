@@ -23,8 +23,7 @@ export const routes: Routes = [
       { path: 'task-assign', component: TaskAssignComponent, data: { roles: ['ceo', 'manager'] } },
       { path: 'manager-dashboard', component: ManagerDashboardComponent, data: { roles: ['manager'] } },
       { path: 'adviser-view', component: AdviserDashboardComponent, data: { roles: ['adviser'] } },
-      { path: 'adviser-task', component: TaskDetailComponent, data: { roles: ['adviser'] } },
+      { path: 'adviser-task/:id', component: TaskDetailComponent, data: { roles: ['adviser'] } },
     ]
   },
-  { path: '**', redirectTo: 'dashboard' }
 ];

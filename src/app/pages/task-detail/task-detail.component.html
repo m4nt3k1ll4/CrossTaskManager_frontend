@@ -4,16 +4,13 @@
       <h5 class="mb-0">Detalles de la Tarea</h5>
     </div>
     <div class="card-body">
-
-      <h6 class="fw-bold">Título: </h6>
+      <h6 class="fw-bold">Título: {{userTask?.task!.title}} </h6>
       <p>Estado:
-        <span class="badge bg-success rounded-pill">Completada</span>
+        <span class="badge bg-success rounded-pill">{{userTask?.status}}</span>
 
       </p>
       <p>Descripción: Aquí va la descripción de la tarea.</p>
       <hr>
-
-
       <h6 class="fw-bold">Comentarios</h6>
       <ul class="list-group list-group-flush mb-3">
         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -24,7 +21,6 @@
       </ul>
       <textarea class="form-control mb-3" placeholder="Agregar comentario..."></textarea>
       <button class="btn btn-success rounded-pill mb-3">Agregar</button>
-
       <h6 class="fw-bold">Evidencia Fotográfica</h6>
       <div class="mb-3">
         <div class="mb-2 d-flex align-items-center">
@@ -34,8 +30,8 @@
 
 
       </div>
-      <input type="file" class="form-control mb-3">
-      <button class="btn btn-primary rounded-pill mb-3">Subir Foto</button>
+      <input (change)="onFileSelected($event)" type="file" class="form-control mb-3">
+      <button class="btn btn-primary rounded-pill mb-3" (click)="postImage()" >Subir Foto</button>
 
 
 

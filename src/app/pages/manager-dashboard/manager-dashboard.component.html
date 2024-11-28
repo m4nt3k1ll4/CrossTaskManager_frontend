@@ -3,7 +3,6 @@
   <div class="d-flex justify-content-between align-items-center">
     <h1 class="dark">Dashboard - <span class="dark">{{ managerData?.headquarter_name }}</span></h1>
   </div>
-
   <!-- Row 1: Tarjetas de Resumen -->
   <div class="row mt-4">
     <!-- Tarjeta Total Tareas Realizadas -->
@@ -25,7 +24,6 @@
       </div>
     </div>
   </div>
-
   <!-- Row 2: Tabla de Tareas Pendientes -->
   <div class="row mt-4">
     <div class="col-md-6">
@@ -40,7 +38,6 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Aquí mostramos las tareas pendientes por cada usuario -->
               <tr *ngFor="let user of pendingUsersArray">
                 <td>{{ user.user }}</td>
                 <td>{{ user.task_title }}</td>
@@ -50,7 +47,6 @@
         </div>
       </div>
     </div>
-
     <!-- Gráfica de Rendimiento -->
     <div class="col-md-6">
       <div class="card">

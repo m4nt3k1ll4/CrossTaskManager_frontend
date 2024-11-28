@@ -3,8 +3,15 @@
   <div class="card shadow-sm rounded-3 mb-4 bg-white">
     <div class="card-body">
       <h5 class="fw-bold mb-3">Progreso de Tareas</h5>
-      <div class="progress" style="height: 20px;">
-        <div class="progress-bar bg-success rounded-pill" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress" style="height: 20px">
+        <div
+          class="progress-bar bg-success rounded-pill"
+          role="progressbar"
+          style="width: 70%"
+          aria-valuenow="70"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
           70%
         </div>
       </div>
@@ -21,31 +28,26 @@
         <table class="table table-hover">
           <thead class="table-light">
             <tr>
-              <th>ID</th>
               <th>Título</th>
               <th>Estado</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Tarea 1</td>
+            <tr *ngFor="let task of userTasks; let i = index">
+              <td>{{ task.task_title }}</td>
               <td>
-                <span class="badge bg-success rounded-pill">Completada</span>
+                <span class="badge bg-success rounded-pill">
+                  {{ task.status }}
+                </span>
               </td>
               <td>
-                <button class="btn btn-info btn-sm rounded-pill">Ver / Editar</button>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Tarea 2</td>
-              <td>
-                <span class="badge bg-warning rounded-pill">Pendiente</span>
-              </td>
-              <td>
-                <button class="btn btn-info btn-sm rounded-pill">Ver / Editar</button>
+                <button
+                  class="btn btn-info btn-sm rounded-pill"
+                  (click)="redirectTo(task.id)"
+                >
+                  Ver / Editar
+                </button>
               </td>
             </tr>
           </tbody>

@@ -13,8 +13,9 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   const role = authService.getRoleFromScopes();
   const allowedRoles = route.data?.['roles'] as Array<string>;
-
+  console.log(allowedRoles);
   if (allowedRoles && !allowedRoles.includes(role)) {
+
     const redirectPath = role === 'ceo' ? '/dashboard' : role === 'manager' ? '/manager-dashboard' : '/adviser-view';
     return router.navigate([redirectPath]);
   }
