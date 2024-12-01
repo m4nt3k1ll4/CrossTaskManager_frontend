@@ -1,103 +1,68 @@
-<div class="">
-  <header
-    class="navbar navbar-expand-lg navbar-light bg-dark py-2 mb-4 border-bottom"
-  >
-    <div
-      class="container-fluid d-flex justify-content-between align-items-center"
-    >
-      <a
-        (click)="redirectToHome()"
-        class="navbar-brand d-flex align-items-center"
-        aria-label="Go to home"
-      >
-        <img
-          src="logoBanner.png"
-          alt="Cross Task Manager Logo"
-          width="140"
-          height="50"
-          class="me-2"
-        />
+<div class="d-flex flex-column min-vh-100">
+  <!-- Header -->
+  <header class="navbar navbar-expand-lg navbar-light bg-dark py-2 mb-4 border-bottom">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <a (click)="redirectToHome()" class="navbar-brand d-flex align-items-center" aria-label="Go to home">
+        <img src="logoBanner.png" alt="Cross Task Manager Logo" width="140" height="50" class="me-2" />
       </a>
 
       <nav class="d-flex flex-wrap align-items-center">
         <ul class="navbar-nav d-flex flex-row">
           <li class="nav-item" *ngIf="showRole('ceo')">
-            <a
-              routerLink="/dashboard"
-              routerLinkActive="active"
-              class="nav-link text-white px-2"
-              aria-label="Go to Dashboard"
-              >Dashboard</a
-            >
+            <a routerLink="/dashboard" routerLinkActive="active" class="nav-link text-white px-2" aria-label="Go to Dashboard">Dashboard</a>
           </li>
           <li class="nav-item" *ngIf="showRole('ceo')">
-            <a
-              routerLink="/employees"
-              routerLinkActive="active"
-              class="nav-link text-white px-2"
-              aria-label="Go to Employees"
-              >Empleados</a
-            >
+            <a routerLink="/employees" routerLinkActive="active" class="nav-link text-white px-2" aria-label="Go to Employees">Empleados</a>
           </li>
           <li class="nav-item" *ngIf="showRole('ceo')">
-            <a
-              routerLink="/headquarters"
-              routerLinkActive="active"
-              class="nav-link text-white px-2"
-              aria-label="Go to Headquarters"
-              >Sedes</a
-            >
+            <a routerLink="/headquarters" routerLinkActive="active" class="nav-link text-white px-2" aria-label="Go to Headquarters">Sedes</a>
           </li>
           <li *ngIf="showRole('manager')">
-            <a
-              routerLink="/manager-dashboard"
-              routerLinkActive="active"
-              class="nav-link text-white px-2"
-              aria-label="Go to dashboard"
-              >Dashboard</a
-            >
+            <a routerLink="/manager-dashboard" routerLinkActive="active" class="nav-link text-white px-2" aria-label="Go to dashboard">Dashboard</a>
           </li>
           <li class="nav-item" *ngIf="showRole('manager, ceo')">
-            <a
-              routerLink="/task"
-              routerLinkActive="active"
-              class="nav-link text-white px-2"
-              aria-label="Go to Tasks"
-              >Tareas</a
-            >
+            <a routerLink="/task" routerLinkActive="active" class="nav-link text-white px-2" aria-label="Go to Tasks">Tareas</a>
           </li>
           <li class="nav-item" *ngIf="showRole('manager, ceo')">
-            <a
-              routerLink="/task-assign"
-              routerLinkActive="active"
-              class="nav-link text-white px-2"
-              aria-label="Go to Task Assignment"
-              >Asignación</a
-            >
+            <a routerLink="/task-assign" routerLinkActive="active" class="nav-link text-white px-2" aria-label="Go to Task Assignment">Asignación</a>
           </li>
           <li class="nav-item" *ngIf="showRole('adviser')">
-            <a
-              routerLink="/adviser-view"
-              routerLinkActive="active"
-              class="nav-link text-white px-2"
-              aria-label="Go to Headquarters"
-              >Dashboard</a
-            >
+            <a routerLink="/adviser-view" routerLinkActive="active" class="nav-link text-white px-2" aria-label="Go to Headquarters">Dashboard</a>
           </li>
         </ul>
       </nav>
+
       <div class="ms-2">
-        <button
-          type="button"
-          class="btn btn-outline-light"
-          (click)="authService.logout()"
-        >
-          LogOut
-        </button>
+        <button type="button" class="btn btn-outline-light" (click)="authService.logout()">LogOut</button>
       </div>
     </div>
   </header>
-</div>
-<div class="container">
-  <router-outlet></router-outlet>
+
+  <!-- Main content -->
+  <div class="container flex-grow-1">
+    <router-outlet></router-outlet>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4 mt-auto">
+    <div class="container">
+      <div class="row">
+        <!-- Columna izquierda -->
+        <div class="col-12 col-md-6 mb-3 mb-md-0 text-center text-md-left">
+          <p>&copy; 2024 Servicio Nacional de Aprendizaje. Todos los derechos reservados.</p>
+          <p>Desarrollado por <strong>Juan Suarez</strong></p>
+          <p>Ficha: <strong>2922682 - Técnico en Programación de Software</strong></p>
+        </div>
+
+        <!-- Columna derecha -->
+        <div class="col-12 col-md-6 text-center text-md-right">
+          <ul class="list-unstyled">
+            <li><a href="https://github.com/m4nt3k1ll4" class="text-white" target="_blank">Mi perfil de GitHub</a></li>
+            <br>
+            <li><small>Desarrollado con <strong>Angular</strong> y <strong>Laravel</strong></small></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 </div>
