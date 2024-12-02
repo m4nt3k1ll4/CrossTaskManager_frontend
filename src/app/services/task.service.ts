@@ -61,4 +61,19 @@ export class TaskService {
     return this.httpClient.post<any>(`${this.apiUrl}/task-images/${id}`, fd);
   }
 
+  deleteImage(taskId: number, imagePath: string): Observable<void> {
+    const imageId = this.extractImageId(imagePath); // Extraer ID de la imagen del path.
+    return this.httpClient.delete<void>(`${this.apiUrl}/task-images/${taskId}/${imageId}`);
+  }
+
+  updateAssignTaskStatus(userTask: UserTask, id: number): Observable<any> {
+    const payload = { status: userTask.status };
+    return this.httpClient.put<any>(`${this.apiUrl}/tasks-assigned/${id}`, payload);
+  }
+
+
+  private extractImageId(imagePath: string): string {
+    return imagePath.split('/').pop() || '';
+  }
+
 }

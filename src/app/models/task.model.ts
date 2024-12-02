@@ -1,4 +1,4 @@
-import { Comment } from './comment.model';
+
 import { Image } from './image.model';
 import { UserTask } from './user-task.model';
 
@@ -15,7 +15,6 @@ export class Task {
   description: string;
   priority: Priority;
   due_date: Date;
-  comments: Comment[];
   images: Image[];
 
 
@@ -25,9 +24,6 @@ export class Task {
     this.description = json.description || '';
     this.priority = json.priority || Priority.Low;
     this.due_date = json.due_date ? json.due_date : new Date();
-    this.comments = json.comments
-      ? json.comments.map((item: Comment) => new Comment(item))
-      : [];
     this.images = json.images
       ? json.images.map((item: Image) => new Image(item))
       : [];

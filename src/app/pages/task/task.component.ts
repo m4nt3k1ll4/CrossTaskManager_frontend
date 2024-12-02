@@ -106,7 +106,6 @@ export class TaskComponent {
       'description': form.value.description,
       'priority': form.value.priority,
       'due_date': new Date(dueDate),
-      'comments': form.value.comments,
       'images': form.value.images,
     };
     //console.log(task);
@@ -123,7 +122,6 @@ export class TaskComponent {
           this.taskService.updateTask(task, form.value.id).subscribe(
             (data) => {
               this.getTask();
-              //console.log(data);
               this.close();
             },
             (error) => {

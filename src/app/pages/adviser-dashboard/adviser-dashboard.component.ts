@@ -51,6 +51,7 @@ export class AdviserDashboardComponent {
       (res: UserTask[]) => {
         console.log(res);
         this.userTasks = res;
+        this.calculateProgress();
       },
       (err) => {
         console.log(err);
@@ -58,12 +59,19 @@ export class AdviserDashboardComponent {
 
     );
   }
-  calculateProgress(){
+  calculateProgress(): number {
+    if (this.userTasks.length === 0) {
+      return 0;
+    }
 
+    const completedTasks = this.userTasks.filter(task => task.status === 'completed').length;
+    return Math.round((completedTasks / this.userTasks.length) * 100);
   }
+
 
   redirectTo(id:number){
     this.router.navigate([`adviser-task/${id}`]);
   }
+
 
 }

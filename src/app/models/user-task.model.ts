@@ -30,9 +30,11 @@ export class User {
 export class Task {
   id: number;
   title: string;
+  description: string;
 
   constructor(json: any = {}) {
     this.id = json.id || 0;
     this.title = json.title || '';
+    this.description = json.description || '';
   }
 }

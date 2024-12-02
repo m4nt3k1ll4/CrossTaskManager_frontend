@@ -116,8 +116,7 @@
           <th>Descripcion</th>
           <th>Prioridad</th>
           <th>Due Date</th>
-          <th *ngIf="showLink('manage-users')">Comment</th>
-          <th *ngIf="showLink('manage-users')">Image URL</th>
+          <th *ngIf="showLink('manage-users')">Images</th>
           <th >Actions</th>
         </tr>
       </thead>
@@ -138,7 +137,6 @@
           <td>{{ task.description }}</td>
           <td>{{ task.priority }}</td>
           <td>{{ task.due_date | dateFormat }}</td>
-          <td *ngIf="showLink('manage-users')">{{ task.comments.length }}</td>
           <td *ngIf="showLink('manage-users')">{{ task.images.length }}</td>
           <td >
             <button

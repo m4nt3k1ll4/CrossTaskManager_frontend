@@ -9,37 +9,34 @@
         <span class="badge bg-success rounded-pill">{{userTask?.status}}</span>
 
       </p>
-      <p>Descripción: Aquí va la descripción de la tarea.</p>
+      <p>Descripción: {{ userTask?.task?.description || 'Sin descripción' }}</p>
       <hr>
-
- <!--      <h6 class="fw-bold">Comentarios</h6>
-      <ul class="list-group list-group-flush mb-3">
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          Comentario de ejemplo
-          <button class="btn btn-danger btn-sm rounded-pill">Eliminar</button>
-        </li>
-
-      </ul>
-      <textarea class="form-control mb-3" placeholder="Agregar comentario..."></textarea>
-      <button class="btn btn-success rounded-pill mb-3">Agregar</button> -->
 
       <h6 class="fw-bold">Evidencia Fotográfica</h6>
       <div class="mb-3">
         <div class="mb-2 d-flex align-items-center">
-          <a href="">lugar para el link de imagen</a>
-          <button class="btn btn-danger btn-sm rounded-pill ms-3">Eliminar</button>
+          <a [href]="uploadedImage" target="_blank">{{uploadedImage}}</a>
+          <button class="btn btn-danger btn-sm rounded-pill ms-3" (click)="deleteImage()">Eliminar</button>
         </div>
+
+        <div *ngIf="uploadedImage" class="alert alert-success">
+          Imagen subida correctamente. <a [href]="uploadedImage" target="_blank">Ver imagen</a>
+        </div>
+        <div *ngIf="!uploadedImage && selectedFile" class="alert alert-danger">
+          No se ha subido ninguna imagen.
+        </div>
+
 
 
       </div>
       <input (change)="onFileSelected($event)" type="file" class="form-control mb-3">
 
       <h6 class="fw-bold">Actualizar Estado</h6>
-      <select class="form-select mb-3 rounded-pill">
+      <select [(ngModel)]="taskStatus" class="form-select mb-3 rounded-pill">
         <option value="uncompleted">Uncompleted</option>
         <option value="completed">Completed</option>
       </select>
-      <button class="btn btn-success rounded-pill" (click)="postImage()">Guardar Cambios</button>
+      <button class="btn btn-success rounded-pill" (click)="saveChanges()">Guardar Cambios</button>
     </div>
   </div>
 </div>
