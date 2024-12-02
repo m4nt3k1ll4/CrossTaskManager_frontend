@@ -6,10 +6,7 @@
     </div>
     <div class="col-6 text-end">
       <!-- Add Employee Button -->
-      <button
-        class="btn btn-success shadow-sm rounded-pill"
-        (click)="initEmployees()"
-      >
+      <button class="btn btn-success shadow-sm rounded-pill" (click)="initEmployees()">
         <i class="bi bi-person-plus-fill me-2"></i>Add Employee
       </button>
     </div>
@@ -30,6 +27,9 @@
             class="form-control"
             name="employeeName"
             placeholder="Enter employee's name"
+            required
+            minlength="3"
+            maxlength="50"
           />
         </div>
         <div class="col-md-6">
@@ -40,6 +40,8 @@
             class="form-control"
             name="emailId"
             placeholder="Enter employee's email"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
           />
         </div>
       </div>
@@ -54,17 +56,14 @@
             class="form-control"
             name="password"
             placeholder="Enter a secure password"
+            required
+            minlength="8"
           />
         </div>
         <div class="col-md-6">
           <label for="role" class="form-label fw-semibold">Role</label>
-          <select
-            formControlName="role_id"
-            class="form-select"
-            aria-label="Select Role"
-            name="role"
-          >
-            <option selected>--Select Role of the Employee--</option>
+          <select formControlName="role_id" class="form-select" aria-label="Select Role" name="role" required>
+            <option selected disabled value="">--Select Role of the Employee--</option>
             <option *ngFor="let role of uniqueRoles" [value]="role.role.id">
               {{ role.role.name }}
             </option>
@@ -76,18 +75,10 @@
       <div class="d-flex justify-content-between mt-3">
         <button type="submit" class="btn btn-primary shadow-sm">
           {{ myForm.value.id ? "Update Employee" : "Add employee" }}
-          <span
-            class="spinner-grow spinner-grow-sm me-2"
-            *ngIf="loading"
-          ></span>
+          <span class="spinner-grow spinner-grow-sm me-2" *ngIf="loading"></span>
         </button>
 
-        <!-- Close Form Button -->
-        <button
-          type="button"
-          class="btn btn-danger shadow-sm"
-          (click)="close()"
-        >
+        <button type="button" class="btn btn-danger shadow-sm" (click)="close()">
           <i class="bi bi-x-circle me-2"></i>Close
         </button>
       </div>
@@ -96,9 +87,7 @@
 
   <!-- Employee Data Table Section (Displayed when showForm is false) -->
   <div class="table-responsive" *ngIf="!showForm">
-    <table
-      class="table table-striped table-hover table-bordered rounded-3 shadow-sm overflow-hidden"
-    >
+    <table class="table table-striped table-hover table-bordered rounded-3 shadow-sm overflow-hidden">
       <thead class="table-dark">
         <tr>
           <th>ID</th>
@@ -110,7 +99,6 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Loading Spinner Row -->
         <tr *ngIf="loading">
           <td colspan="7" class="text-center">
             <div class="spinner-grow text-muted"></div>
@@ -121,8 +109,6 @@
             <div class="spinner-grow text-danger"></div>
           </td>
         </tr>
-
-        <!-- Employees Data Rows -->
         <tr *ngFor="let user of employees">
           <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
@@ -130,20 +116,10 @@
           <td>{{ user.role?.name }}</td>
           <td>{{ user.headquarter?.name }}</td>
           <td>
-            <!-- Edit Employee Button -->
-            <button
-              type="button"
-              class="btn btn-primary btn-sm rounded-pill"
-              (click)="updateEmployees(user)"
-            >
+            <button type="button" class="btn btn-primary btn-sm rounded-pill" (click)="updateEmployees(user)">
               Edit
             </button>
-            <!-- Delete Employee Button -->
-            <button
-              type="button"
-              class="btn btn-danger btn-sm rounded-pill mx-2"
-              (click)="deleteEmployees(user.id)"
-            >
+            <button type="button" class="btn btn-danger btn-sm rounded-pill mx-2" (click)="deleteEmployees(user.id)">
               Delete
             </button>
           </td>

@@ -14,7 +14,7 @@
 
   <!-- Form Container, displayed only when showForm is true -->
   <section class="mb-4 p-4 shadow rounded border bg-light" *ngIf="showForm">
-    <form [formGroup]="myForm" (ngSubmit)="formSubmitHeadquarter(myForm)">
+    <form [formGroup]="myForm" (ngSubmit)="formSubmitHeadquarter(myForm)" novalidate>
       <h4 class="text-center mb-4 fw-bold">Add Headquarters</h4>
 
       <!-- Headquarters Name and Manager Fields -->
@@ -26,8 +26,14 @@
             type="text"
             class="form-control"
             name="headquarterName"
+            id="headquarterName"
             placeholder="Enter a headquarter name"
+            required
+            minlength="3"
           />
+          <div class="invalid-feedback">
+            Please enter a valid headquarter name (at least 3 characters).
+          </div>
         </div>
 
         <div class="col-md-6">
@@ -37,12 +43,17 @@
             class="form-select"
             aria-label="Select Manager"
             name="manager"
+            id="manager"
+            required
           >
-            <option selected>--Select Headquarters Leader--</option>
+            <option value="" selected disabled>--Select Headquarters Leader--</option>
             <option *ngFor="let manager of uniqueManagers" [value]="manager.id">
               {{ manager.name }}
             </option>
           </select>
+          <div class="invalid-feedback">
+            Please select a valid headquarters leader.
+          </div>
         </div>
       </div>
 
@@ -50,7 +61,7 @@
       <div class="d-flex justify-content-between mt-3">
         <button type="submit" class="btn btn-primary shadow-sm">
           {{ myForm.value.id ? "Update Headquarters" : "Add Headquarters" }}
-          <span class="spinner-grow spinner-grow-sm me-2"></span>
+          <span class="spinner-grow spinner-grow-sm me-2" *ngIf="loading"></span>
         </button>
 
         <!-- Close Form Button -->
@@ -92,7 +103,11 @@
           <td>{{ getManagerName(headquarter.manager_id) }}</td>
           <td>
             <!-- Edit Headquarters Button -->
-            <button type="button" class="btn btn-primary btn-sm rounded-pill" (click)="updateHeadquarter(headquarter)">
+            <button
+              type="button"
+              class="btn btn-primary btn-sm rounded-pill"
+              (click)="updateHeadquarter(headquarter)"
+            >
               Edit
             </button>
             <!-- Delete Headquarters Button -->
